@@ -1,0 +1,5 @@
+@import '../../../globals';
+.statistics{
+  grid-area: s;
+  @extend %web-block;
+}

@@ -1,0 +1,25 @@
+@import "../../globals";
+.header{
+    grid-area: h;
+    display: grid;
+    background: white;
+    align-items: center;
+    justify-content: start;
+    position: fixed;
+    grid-template-columns: 1.5fr 8.5fr;
+    width: 100%;
+    box-shadow: 0 8px 30px rgba(0,0,0,.05);
+    z-index: 999;
+    &__logo{
+        span{
+            font-size: 10px;
+        }
+        margin-left: 12%;
+        img{
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: 5px auto;
+        }
+    }
+}

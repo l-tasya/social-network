@@ -1,0 +1,7 @@
+@import "../../globals";
+.content {
+  display: grid;
+  grid-template-areas: 'u u' 's p';
+  margin: 0 150px 0 150px;
+  min-width: 694px;
+}

@@ -1,0 +1,28 @@
+@import "../../globals";
+
+.dialogs {
+  @extend %web-block;
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  font-size: 22px;
+  margin-left: 50px;
+  position: fixed;
+  width: 80%;
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      color: $post-text-color;
+    }
+  }
+
+  .active {
+    color: $web-color;
+  }
+
+  &__message {
+
+  }
+}

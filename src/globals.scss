@@ -1,0 +1,26 @@
+$web-color: #1e74fd;
+$post-text-color: #adb5bd;
+$web-text-color: #888;
+%button-style {
+  font-size: 22px;
+  font-family: Montserrat, sans-serif;
+  line-height: 28px;
+  color: $web-text-color;
+  &:hover{
+      color: $web-color
+  }
+}
+%font-for-all{
+  font-size: 20px;
+  font-family: Montserrat, sans-serif;
+  color: black;
+
+}
+%web-block{
+  padding: 24px;
+  margin-bottom: 16px;
+  background: white;
+  border-radius: 15px;
+  color: $post-text-color;
+  box-shadow: 0 8px 30px rgba(0,0,0,.05);
+}

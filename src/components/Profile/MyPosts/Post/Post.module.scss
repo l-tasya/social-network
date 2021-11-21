@@ -1,0 +1,49 @@
+@import ".idea/../src/globals";
+
+.post {
+  @extend %web-block;
+  padding: 24px;
+  margin: 10px 0 0 24px;
+
+  &__img {
+    margin: 0 16px 16px 0;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .05);
+  }
+
+  &__title {
+    display: flex;
+  }
+  &__buttons{
+    display: flex;
+    button{
+      width: 25px;
+      height: 25px;
+      font-family: Montserrat, sans-serif;
+      font-size: 12px;
+    }
+  }
+  &__name {
+    margin: 4px 0 8px;
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+    color: black;
+  }
+
+  &__time {
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+  }
+
+  &__text {
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+
+  }
+
+  &__like {
+    align-self: end;
+  }
+}

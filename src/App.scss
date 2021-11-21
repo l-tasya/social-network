@@ -1,0 +1,25 @@
+@import "reset-style";
+@import "globals";
+
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700;900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap);
+
+
+.app-wrapper {
+  display: grid;
+  grid-template-areas: 'h h' 'n c';
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 15% 8.5fr;
+  @extend %font-for-all;
+  background: #F5F5F5;
+}
+
+.app-wrapper-content {
+  margin-top: 8px;
+  grid-area: c;
+  height: 1500px;
+  padding-right: 15px;
+
+}
