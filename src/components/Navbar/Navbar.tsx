@@ -6,7 +6,7 @@ const Navbar = () => {
     return (
         <div className={s.wrapper}>
             <nav className={s.nav}>
-                <NavLink activeClassName={s.active} className={s.nav__button} to='/social-network/profile'><img className={s.nav__img}
+                <NavLink activeClassName={s.active} className={s.nav__button} to='/profile'><img className={s.nav__img}
                                                                                                  src="http://uitheme.net/sociala/images/profile-4.png"
                                                                                                  alt=""/>Profile</NavLink>
                 <NavLink activeClassName={s.active} className={s.nav__button} to='/dialogs'><img className={s.nav__img}
