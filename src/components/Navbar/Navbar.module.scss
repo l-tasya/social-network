@@ -18,6 +18,10 @@
   box-shadow: 0 8px 30px rgba(0,0,0,.05);
     span{
       margin-left: 5px;
+      color: #adb5bd;
+      &:hover{
+        color: #1e74fd;
+      }
     }
   &__button {
     display: flex;
@@ -27,6 +31,7 @@
     width: 100%;
     font-size: 19px;
     @extend %button-style;
+    color: black;
   }
   &__img{
     width: 45px;
@@ -36,5 +41,6 @@
 }
 .active {
   color: #1e74fd;
+    span{color: #1e74fd}
 }
 
