@@ -1,8 +1,8 @@
 let rerenderEntireTree = (state: RootStateType)=>{
 
 }
-let firstSrc = "http://uitheme.net/sociala/images/user-8.png";
-let secondSrc = "http://uitheme.net/sociala/images/user-7.png";
+let firstSrc = "https://lh3.googleusercontent.com/nBZdESgfQz7yjLi7btkKiwDpTZxf4_Rv4Uczg1Wk370-X0iueyOuyfPiXksYj1psOVLO0C8=s60";
+let secondSrc = 'https://lh3.googleusercontent.com/NVZ8or0PYUHCoVjY0CGEMME_laKQ3524I4IbsZDW5ybB_0buBVhtN3C6zrMdLiCvDJE=s60';
 //object types
 export type PostType ={
     id: number
@@ -69,7 +69,6 @@ export const state: RootStateType = {
             {id: 3, message: 'You are great person!'},
             {id: 4, message: 'Very glad to see you!'},
             {id: 5, message: 'Bye'},
-            {id: 6, message: 'Moon beautiful today'},
         ],
     }
 }
