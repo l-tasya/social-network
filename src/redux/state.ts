@@ -74,6 +74,7 @@ export const state: RootStateType = {
 }
 
 export const addPost = (src: 1 | 2) => {
+
     let newPost: PostType = {
         id: state.profilePage.post[state.profilePage.post.length - 1].id + 1,
         src: src === 1 ? firstSrc : secondSrc,
