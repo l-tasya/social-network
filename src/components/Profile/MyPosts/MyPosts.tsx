@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.scss'
 import Post from './Post/Post';
+import {Plus} from 'react-feather';
 
 //types
 type PostType = {
@@ -44,8 +45,8 @@ const MyPosts: React.FC<MyPostsPropsType> = ({state, addPost, newPostText,change
     return (
         <div className={s.myPosts}>
             <div className={s.myPosts__add}>
-                <button onClick={onAddPostButtonClick}>
-                    <img src="https://static.thenounproject.com/png/3555497-200.png" alt=""/>
+                <button className={s.addPost} onClick={onAddPostButtonClick}>
+                    <Plus/>
                     <>Create post</>
                 </button>
                 <div className={s.myPosts__textarea}>

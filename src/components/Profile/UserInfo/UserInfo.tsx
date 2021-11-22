@@ -1,4 +1,5 @@
 import React from 'react';
+import {Mail, MoreHorizontal} from 'react-feather';
 import s from './UserInfo.module.scss'
 
 const UserInfo: React.FC = (props) => {
@@ -16,10 +17,10 @@ const UserInfo: React.FC = (props) => {
                     <div className={s.userInfo__title}>Name Surname</div>
                     <div className={s.userInfo__subtitle}>dalionfull@gmail.com</div>
                 </div>
-                <div className={s.userInfo__buttons}>
-                    <button className={s.addFriend}>ADD FRIEND</button>
-                    <button className={s.message}>✉</button>
-                    <button className={s.message}>···</button>
+                <div className={`${s.userInfo__buttons} ${s.buttons}`}>
+                    <button className={s.buttons__friendAdd}>ADD FRIEND</button>
+                    <button className={s.buttons__chat}><Mail size={20}/></button>
+                    <button className={s.buttons__other}><MoreHorizontal size={20}/></button>
                 </div>
             </div>
         </div>

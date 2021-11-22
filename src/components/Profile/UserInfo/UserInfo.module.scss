@@ -56,7 +56,8 @@
   &__buttons {
     display: flex;
     align-items: center;
-    margin-left: 40%;
+    justify-content: flex-end;
+    margin-left: 300px;
     button {
       height: 45px;
       margin-left: 10px;
@@ -64,22 +65,26 @@
   }
 
 }
-
-.addFriend {
-  color: white;
-  background: #10d876;
-  padding: 16px;
-  border-radius: 0.3rem;
-  font-weight: 700;
-  font-family: Montserrat, sans-serif;
-  font-size: 10px;
+.buttons{
+  width: 200px;
+  &__friendAdd{
+    color: white;
+    min-width: 110px;
+    background: #10d876;
+    padding: 15px;
+    border-radius: 0.3rem;
+    font-weight: 700;
+    font-family: Montserrat, sans-serif;
+    font-size: 10px;
+  }
+  &__chat, &__other{
+    min-width: 45px;
+    height: 45px;
+    border-radius: 0.3rem;
+    padding: 3px;
+  }
+  &__other{
+    padding-top: 8px;
+  }
 }
 
-.message {
-  width: 45px;
-  background: lavender;
-  color: black;
-  border-radius: 0.3rem;
-  font-size: 20px;
-
-}

@@ -16,6 +16,9 @@
   border-radius: 15px;
   height: 70%;
   box-shadow: 0 8px 30px rgba(0,0,0,.05);
+    span{
+      margin-left: 5px;
+    }
   &__button {
     display: flex;
     align-items: center;
@@ -24,12 +27,12 @@
     width: 100%;
     font-size: 19px;
     @extend %button-style;
-
   }
   &__img{
     width: 45px;
     height: 45px;
   }
+
 }
 .active {
   color: #1e74fd;
