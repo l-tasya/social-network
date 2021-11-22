@@ -49,6 +49,16 @@
 
     }
   }
+  .error{
+    border-color: lightcoral;
+  }
+  .errorMessage{
+    color:red;
+    font-size: 12px;
+    padding-left: 15px;
+    display: block;
+    font-weight: 700;
+  }
   .addPost{
     width: 150px;
   }
