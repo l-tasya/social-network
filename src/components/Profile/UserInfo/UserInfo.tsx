@@ -12,7 +12,7 @@ const UserInfo: React.FC = (props) => {
                 </div>
             </div>
             <div className={s.userInfo__info}>
-                <img className={s.userInfo__ava} src={'http://uitheme.net/sociala/images/user-12.png'} alt=''/>
+                <img className={s.userInfo__ava} src={'https://lh3.googleusercontent.com/ryu2b7qCwbswwivnwFVxiKvHH8pA4r7cFyy66f7K4Tl5GvG81pRhVMSic2f4EcRV1Ilctg=s85'} alt=''/>
                 <div>
                     <div className={s.userInfo__title}>Name Surname</div>
                     <div className={s.userInfo__subtitle}>dalionfull@gmail.com</div>
