@@ -1,5 +1,6 @@
 import React from "react";
 import s from './Post.module.scss'
+import {Heart} from 'react-feather';
 
 type PropsType = {
     message: string,
@@ -19,7 +20,7 @@ const Post: React.FC<PropsType> = (props) => {
             <div className={s.post__text}>
                 <div>{props.message}</div>
             </div>
-
+            <div className={s.footer}><Heart size={20} className={s.footer__like}/>1.2M Like</div>
             {/*<div className={s.post__buttons}>*/}
             {/*    <div>♥</div>*/}
             {/*    12 Like*/}

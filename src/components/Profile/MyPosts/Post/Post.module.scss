@@ -16,15 +16,18 @@
   &__title {
     display: flex;
   }
-  &__buttons{
+
+  &__buttons {
     display: flex;
-    button{
+
+    button {
       width: 25px;
       height: 25px;
       font-family: Montserrat, sans-serif;
       font-size: 12px;
     }
   }
+
   &__name {
     margin: 4px 0 8px;
     font-family: Montserrat, sans-serif;
@@ -34,7 +37,7 @@
 
   &__time {
     font-family: Montserrat, sans-serif;
-    font-size: 12px;
+    font-size: 15px;
   }
 
   &__text {
@@ -43,7 +46,15 @@
 
   }
 
-  &__like {
-    align-self: end;
+  .footer {
+    margin-top: 16px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: black;
+
+    &__like {
+      margin-right: 5px;
+    }
   }
 }
