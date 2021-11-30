@@ -25,22 +25,22 @@ const App: React.FC<AppPropsType> = (props) => {
                 <Header title={'Social Network'}/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route render={() =><Profile changeInput={props.changeInput} addPost={props.changePosts} state={props.state.profilePage}/>} path='/profile'/>
+                    <Route render={() =><Profile changeInput={props.changeInput} addPost={props.changePosts} state={props.state.profilePage}/>} path='/social-network/profile'/>
 
 
-                    <Route render={() => <Dialogs state={props.state.dialogsPage}/>} path='/dialogs'/>
-
-
-
-                    <Route render={() => <Music/>} path='/audio'/>
+                    <Route render={() => <Dialogs state={props.state.dialogsPage}/>} path='/social-network/dialogs'/>
 
 
 
-                    <Route render={() => <News/>} path='/feed'/>
+                    <Route render={() => <Music/>} path='/social-network/audio'/>
 
 
 
-                    <Route render={() => <Settings/>} path='/settings'/>
+                    <Route render={() => <News/>} path='/social-network/feed'/>
+
+
+
+                    <Route render={() => <Settings/>} path='/social-network/settings'/>
 
 
 
