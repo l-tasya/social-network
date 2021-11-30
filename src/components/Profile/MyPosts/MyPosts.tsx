@@ -58,7 +58,7 @@ const MyPosts: React.FC<MyPostsPropsType> = ({state, addPost, newPostText,change
                 </button>
                 <div className={s.myPosts__textarea}>
                     <div>
-                        <img src="https://lh3.googleusercontent.com/NVZ8or0PYUHCoVjY0CGEMME_laKQ3524I4IbsZDW5ybB_0buBVhtN3C6zrMdLiCvDJE=s60" alt=""/>
+                        <img src="https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt=""/>
                     </div>
                      <textarea
                          onChange={(e)=>(onTextAreaChangeHandler(e))}

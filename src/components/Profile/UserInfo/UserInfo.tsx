@@ -12,7 +12,7 @@ const UserInfo: React.FC = (props) => {
                 </div>
             </div>
             <div className={s.userInfo__info}>
-                <img className={s.userInfo__ava} src={'https://lh3.googleusercontent.com/ryu2b7qCwbswwivnwFVxiKvHH8pA4r7cFyy66f7K4Tl5GvG81pRhVMSic2f4EcRV1Ilctg=s85'} alt=''/>
+                <img className={s.userInfo__ava} src={'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'} alt=''/>
                 <div>
                     <div className={s.userInfo__title}>Name Surname</div>
                     <div className={s.userInfo__subtitle}>dalionfull@gmail.com</div>

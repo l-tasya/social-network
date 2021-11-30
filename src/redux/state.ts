@@ -1,8 +1,9 @@
 let rerenderEntireTree = (state: RootStateType)=>{
 
 }
-let firstSrc = "https://lh3.googleusercontent.com/nBZdESgfQz7yjLi7btkKiwDpTZxf4_Rv4Uczg1Wk370-X0iueyOuyfPiXksYj1psOVLO0C8=s60";
-let secondSrc = 'https://lh3.googleusercontent.com/NVZ8or0PYUHCoVjY0CGEMME_laKQ3524I4IbsZDW5ybB_0buBVhtN3C6zrMdLiCvDJE=s60';
+let firstSrc = 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
+let secondSrc = 'https://static.turbosquid.com/Preview/001325/881/YD/_600.jpg';
+
 //object types
 export type PostType ={
     id: number
