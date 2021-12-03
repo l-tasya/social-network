@@ -70,10 +70,10 @@ export const state: RootStateType = {
             {id: 1,sent:true,  message: 'Hi!'},
             {id: 2,sent:false,  message: 'How are you!'},
             {id: 3,sent:true,  message: 'You are great person!'},
-            {id: 4,sent:true,  message: 'Very glad to see you!'},
-            {id: 5,sent:true,  message: 'Bye'},
+            {id: 4,sent:false,  message: 'Very glad to see you!'},
+            {id: 5,sent:false,  message: 'Bye'},
         ],
-        messageCurrentValue: 's'
+        messageCurrentValue: ''
     }
 }
 
