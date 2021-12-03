@@ -8,7 +8,7 @@ type DialogPropsType = {
 }
 
 const DialogsItem = (props: DialogPropsType) => {
-    return <NavLink activeClassName={s.active} to={`/dialogs/${props.id}`}>{props.name}</NavLink>
+    return <NavLink activeClassName={s.active} to={`/social-network/dialogs/${props.id}`}>{props.name}</NavLink>
 }
 
 export default DialogsItem
