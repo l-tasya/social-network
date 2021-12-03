@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {addPost, onPostInputChange, RootStateType, state, subscribe} from './redux/state';
+import {addPost, onMessageChange, onPostInputChange, RootStateType, state, subscribe} from './redux/state';
 
 let rerenderEntireTree = (state: RootStateType,)=>{
     ReactDOM.render(
@@ -12,6 +12,7 @@ let rerenderEntireTree = (state: RootStateType,)=>{
                 state={state}
                 changePosts={addPost}
                 changeInput={onPostInputChange}
+                changeMessage={onMessageChange}
             />
         </React.StrictMode>,
         document.getElementById('root')
