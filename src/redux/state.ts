@@ -89,7 +89,14 @@ export const addPost = (src: 1 | 2) => {
     rerenderEntireTree(state)
 }
 export const sendMessage = ()=>{
-
+    let newMessage: MessageType = {
+        id: state.dialogsPage.messages[state.dialogsPage.messages.length].id,
+        sent: true,
+        message: state.dialogsPage.messageCurrentValue
+    }
+    state.dialogsPage.messages.push(newMessage)
+    state.dialogsPage.messageCurrentValue = ''
+    rerenderEntireTree(state);
 }
 export const onMessageChange = (text: string)=>{
     state.dialogsPage.messageCurrentValue = `${text}`
