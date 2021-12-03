@@ -8,21 +8,80 @@
   margin-left: 50px;
   position: fixed;
   width: 80%;
+  border: 2px solid $post-text-color;
 
   &__items {
     display: flex;
+    width: 150px;
     flex-direction: column;
+    border: 2px solid $post-text-color;
+    border-radius: 10px;
+    position: relative;
+    line-height: 30px;
+    padding: 15px;
 
     a {
       color: $post-text-color;
+      &:hover{color: $web-color}
     }
+
   }
 
   .active {
     color: $web-color;
   }
 
-  &__message {
-
+  &__messages {
+    border: 2px solid $post-text-color;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
+  .message{
+    display: inline-block;
+    background: #E6EEFF;
+    margin-bottom: 15px;
+    color: black;
+    font-size: 13px;
+    padding: 14px;
+    font-weight: 500;
+    border-radius: 10px;
+    align-self: flex-start;
+  }
+  .senDED{
+    background: #1e74fd;
+    align-self: flex-end;
+  }
+  &__input{
+    font-size: 13px;
+    background: #E6EEFF;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: center;
+    font-weight: 500;
+    width: 80%;
+  }
+  &__send{
+    background: #1e74fd;
+    color: white;
+    font-size: 16px;
+    padding: 4px;
+    border-radius: 50%;
+    margin-left: 5px;
+    width: 35px;
+  }
+  &__typing{
+    display: flex;
+    align-items: center;
+    width: 90%;
+  }
+}
+.dialogIcon {
+  background: white;
+  position: absolute;
+  top: -14px;
+  width: 30px;
+  left: 15px
 }
