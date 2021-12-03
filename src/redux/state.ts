@@ -19,6 +19,7 @@ export type DialogType ={
 export type MessageType ={
     id: number
     message: string
+    sent: boolean
 }
 
 //items array types
@@ -33,6 +34,7 @@ export type ProfilePageType = {
 export type DialogsPageType ={
     dialogs: DialogsType
     messages: MessagesType
+    messageCurrentValue: string
 }
 //main type
 export type RootStateType ={
@@ -65,12 +67,13 @@ export const state: RootStateType = {
             {id: '@King', name: 'King'},
         ],
         messages: [
-            {id: 1, message: 'Hi!'},
-            {id: 2, message: 'How are you!'},
-            {id: 3, message: 'You are great person!'},
-            {id: 4, message: 'Very glad to see you!'},
-            {id: 5, message: 'Bye'},
+            {id: 1,sent:true,  message: 'Hi!'},
+            {id: 2,sent:false,  message: 'How are you!'},
+            {id: 3,sent:true,  message: 'You are great person!'},
+            {id: 4,sent:true,  message: 'Very glad to see you!'},
+            {id: 5,sent:true,  message: 'Bye'},
         ],
+        messageCurrentValue: 's'
     }
 }
 
@@ -83,6 +86,13 @@ export const addPost = (src: 1 | 2) => {
     }
     state.profilePage.post.push(newPost)
     state.profilePage.newPostText = ''
+    rerenderEntireTree(state)
+}
+export const sendMessage = ()=>{
+
+}
+export const onMessageChange = (text: string)=>{
+    state.dialogsPage.messageCurrentValue = `${text}`
     rerenderEntireTree(state)
 }
 export const onPostInputChange = (text: string) =>{
