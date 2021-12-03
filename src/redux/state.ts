@@ -90,7 +90,7 @@ export const addPost = (src: 1 | 2) => {
 }
 export const sendMessage = ()=>{
     let newMessage: MessageType = {
-        id: state.dialogsPage.messages[state.dialogsPage.messages.length].id,
+        id: state.dialogsPage.messages[state.dialogsPage.messages.length -1].id +1,
         sent: true,
         message: state.dialogsPage.messageCurrentValue
     }
