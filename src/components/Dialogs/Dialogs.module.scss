@@ -1,14 +1,15 @@
 @import "../../globals";
 
+
 .dialogs {
   @extend %web-block;
   display: grid;
   grid-template-columns: 2fr 10fr;
   font-size: 22px;
   margin-left: 50px;
-  position: fixed;
   width: 80%;
   border: 2px solid $post-text-color;
+  max-height: 500px;
 
   &__items {
     display: flex;
@@ -19,6 +20,7 @@
     position: relative;
     line-height: 30px;
     padding: 15px;
+    flex: 1 1 250px;
 
     a {
       color: $post-text-color;
@@ -38,6 +40,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    justify-content: flex-end;
+    overflow-y: hidden;
+    height: 400px;
   }
   .message{
     display: inline-block;

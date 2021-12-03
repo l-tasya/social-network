@@ -32,7 +32,15 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     let messageElements = props.state.messages.map((t) => <Message sent={t.sent} key={t.id} text={t.message}/>)
 
     const onMessageInputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+
         props.changeMessage(e.currentTarget.value)
+    }
+     const onSentButtonClick = () =>{
+         if(props.state.messageCurrentValue.trim() !== ''){props.sendMessage()}
+     }
+    const enterKeyDownHandler = (e: React.KeyboardEvent) =>{
+
+        e.key === "Enter" && onSentButtonClick()
     }
     return (
         <div className={s.dialogs}>
@@ -45,8 +53,9 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                 <div className={s.dialogs__typing}><input value={props.state.messageCurrentValue}
                                                           className={s.dialogs__input} type="text"
                                                           placeholder={'Start typing..'}
-                                                          onChange={onMessageInputChangeHandler}/><span
-                    className={s.dialogs__send}><ArrowRight onClick={props.sendMessage}/></span></div>
+                                                          onChange={onMessageInputChangeHandler}
+                onKeyPress={enterKeyDownHandler}/><span
+                    className={s.dialogs__send}><ArrowRight onClick={onSentButtonClick}/></span></div>
             </div>
         </div>
     )
