@@ -15,6 +15,7 @@ type AppPropsType = {
     state: RootStateType
     changePosts: (src: 1 | 2) => void
     changeInput: (text: string) => void
+    changeMessage: (text: string)=>void
 }
 
 
@@ -28,7 +29,7 @@ const App: React.FC<AppPropsType> = (props) => {
                     <Route render={() =><Profile changeInput={props.changeInput} addPost={props.changePosts} state={props.state.profilePage}/>} path='/social-network/profile'/>
 
 
-                    <Route render={() => <Dialogs state={props.state.dialogsPage}/>} path='/social-network/dialogs'/>
+                    <Route render={() => <Dialogs changeMessage={props.changeMessage} state={props.state.dialogsPage}/>} path='/social-network/dialogs'/>
 
 
 
