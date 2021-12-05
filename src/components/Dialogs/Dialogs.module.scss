@@ -6,10 +6,10 @@
   display: grid;
   grid-template-columns: 2fr 10fr;
   font-size: 22px;
-  margin-left: 50px;
-  width: 80%;
   border: 2px solid $post-text-color;
+  width: 90%;
   max-height: 500px;
+
 
   &__items {
     display: flex;
@@ -67,6 +67,11 @@
     align-self: center;
     font-weight: 500;
     width: 80%;
+    border: 2px solid #E6EEFF;
+  }
+  .errorInput{
+    border: 2px solid  lightcoral;
+
   }
   &__send{
     background: #1e74fd;
