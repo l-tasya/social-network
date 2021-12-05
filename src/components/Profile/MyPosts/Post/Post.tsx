@@ -21,12 +21,6 @@ const Post: React.FC<PropsType> = (props) => {
                 <div>{props.message}</div>
             </div>
             <div className={s.footer}><Heart size={20} className={s.footer__like}/>1.2M Like</div>
-            {/*<div className={s.post__buttons}>*/}
-            {/*    <div>♥</div>*/}
-            {/*    12 Like*/}
-            {/*    <div>comment</div>*/}
-            {/*</div>*/}
-            {/*<div className={s.post__like}>♥</div>*/}
         </div>
     )
 }
