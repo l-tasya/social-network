@@ -11,15 +11,15 @@
   display: grid;
   grid-template-areas: 'h h' 'n c';
   grid-template-rows: 60px 1fr;
-  grid-template-columns: 15% 8.5fr;
+  grid-template-columns: 15% 85%;
   @extend %font-for-all;
   background: #F5F5F5;
 }
 
 .app-wrapper-content {
-  margin-top: 8px;
   grid-area: c;
   min-height: 700px;
   padding-right: 15px;
-
+  margin: 5px 10% 0 10%;
+  min-width: 40%;
 }
