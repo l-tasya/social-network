@@ -2,6 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './MyPosts.module.scss'
 import Post from './Post/Post';
 import {Plus} from 'react-feather';
+import {ActionsType} from '../../../redux/state';
 
 //types
 type PostType = {
@@ -12,12 +13,11 @@ type PostType = {
 
 type MyPostsPropsType = {
     state: Array<PostType>
-    addPost: (src: 1 | 2) => void
     newPostText: string
-    changeInput: (text: string) => void
+    dispatch: (action: ActionsType)=>void
 }
 
-const MyPosts: React.FC<MyPostsPropsType> = ({state, addPost, newPostText,changeInput}) => {
+const MyPosts: React.FC<MyPostsPropsType> = ({state, newPostText,dispatch}) => {
     //converting post state to Post component
     let [error, setError] = useState<'required field'|''>('')
     let postElements = state.map((t) => <Post key={t.id} message={t.message} img={t.src}/>)
@@ -25,7 +25,7 @@ const MyPosts: React.FC<MyPostsPropsType> = ({state, addPost, newPostText,change
     //Event Handlers
     let onAddPostButtonClick = (e: any) => {
         if (newPostText.trim() !== '') {
-            addPost(2)
+            dispatch({type: 'ADD-POST',src: 2})
             setError('')
         } else {
             setError('required field')
@@ -47,7 +47,7 @@ const MyPosts: React.FC<MyPostsPropsType> = ({state, addPost, newPostText,change
 
     //Flux circulation by textarea value
     let onTextAreaChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        changeInput(`${event.currentTarget.value}`)
+        dispatch({type: 'POST-INPUT-CHANGE', text: `${event.currentTarget.value}`})
     }
     return (
         <div className={s.myPosts}>

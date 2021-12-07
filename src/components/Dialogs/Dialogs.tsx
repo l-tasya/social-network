@@ -3,25 +3,13 @@ import s from './Dialogs.module.scss';
 import Message from './Message/Message';
 import DialogsItem from './DialogsItem/DialogsItem';
 import {ArrowRight, MessageCircle} from 'react-feather';
+import {ActionsType, DialogsPageType} from '../../redux/state';
 
-type DialogsType = {
-    name: string
-    id: string
-}
-type MessageType = {
-    id: number
-    message: string
-    sent: boolean
-}
-type DialogsPageType = {
-    dialogs: Array<DialogsType>
-    messages: Array<MessageType>
-    messageCurrentValue: string
-}
 type DialogsPropsType = {
     state: DialogsPageType
-    changeMessage: (text: string) => void
-    sendMessage: ()=>void
+    // changeMessage: (text: string) => void
+    // sendMessage: ()=>void
+    dispatch: (action: ActionsType)=>void
 }
 
 
@@ -35,7 +23,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     //event handlers
     const onMessageInputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setError('')
-        props.changeMessage(e.currentTarget.value)
+        props.dispatch({type:'MESSAGE-CHANGE', text: `${e.currentTarget.value}`})
     }
     const enterKeyDownHandler = (e: React.KeyboardEvent) =>{
         e.key === "Enter" && onSentButtonClick()
@@ -45,7 +33,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
         if(props.state.messageCurrentValue.trim() === ''){
             setError('required field');
         }else{
-            props.sendMessage()
+            props.dispatch({type: 'SEND-MESSAGE'})
         }
     }
     return (

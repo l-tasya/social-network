@@ -4,7 +4,7 @@ import React from "react";
 const News = () => {
     return (
         <div>
-            News
+            NEWS
         </div>
     )
 }
