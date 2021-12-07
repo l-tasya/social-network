@@ -3,7 +3,6 @@ import {Mail, MoreHorizontal} from 'react-feather';
 import s from './UserInfo.module.scss'
 
 const UserInfo: React.FC = (props) => {
-    //todo: state of user(photo, name, img...)
     return (
         <div className={s.userInfo}>
             <div className={s.userInfo__img}>
