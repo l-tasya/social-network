@@ -64,6 +64,9 @@ type LikeClickActionType = {
     type: 'LIKE-CLICK'
     id: number
 }
+type FakeDialogsActiontype = {
+    type: 'FAKE-DIALOGS'
+}
 /*--general type--*/
 export type ActionsType =
     AddPostActionType
@@ -71,6 +74,7 @@ export type ActionsType =
     | MessageChangeActionType
     | PostInputChangeActionType
     | LikeClickActionType
+    | FakeDialogsActiontype
 /*--general type--*/
 /*----DISPATCH ACTIONS----*/
 
@@ -137,7 +141,7 @@ export const store: StoreType = {
         }
         if (action.type === 'SEND-MESSAGE') {
             let newMessage: MessageType = {
-                id: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1,
+                id:  this._state.dialogsPage.messages.length!== 0? this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1:1,
                 sent: true,
                 message: this._state.dialogsPage.messageCurrentValue
             }
@@ -157,6 +161,11 @@ export const store: StoreType = {
             let newState = this._state
             newState.profilePage.post[action.id].like = !newState.profilePage.post[action.id].like;
             this._callbackSubscriber({ ...newState})
+        }
+        if (action.type === 'FAKE-DIALOGS'){
+            let temp = this._state
+            temp.dialogsPage.messages = []
+            this._callbackSubscriber({ ...temp})
         }
     }
 }

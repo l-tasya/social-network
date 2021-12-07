@@ -17,7 +17,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     //local state
     let [error, setError] = useState<string|null>(null);
     //converting state to component
-    let dialogElements = props.state.dialogs.map((t) => <DialogsItem key={t.id} name={t.name} id={t.id}/>)
+    let dialogElements = props.state.dialogs.map((t) => <DialogsItem dispatch={props.dispatch} key={t.id} name={t.name} id={t.id}/>)
     let messageElements = props.state.messages.map((t) => <Message sent={t.sent} key={t.id} text={t.message}/>)
 
     //event handlers
