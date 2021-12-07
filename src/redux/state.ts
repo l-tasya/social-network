@@ -1,53 +1,72 @@
 let firstSrc = 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
 let secondSrc = 'https://static.turbosquid.com/Preview/001325/881/YD/_600.jpg';
-//object types
-export type PostType ={
+/*------STATE TYPE------*/
+export type PostType = {
     id: number
     src: string
     message: string
 }
-export type DialogType ={
+export type DialogType = {
     id: string
     name: string
 }
-export type MessageType ={
+export type MessageType = {
     id: number
     message: string
     sent: boolean
 }
-//items array types
 export type PostsType = Array<PostType>
 export type DialogsType = Array<DialogType>
 export type MessagesType = Array<MessageType>
-//other types
 export type ProfilePageType = {
     post: PostsType
     newPostText: string
 }
-export type DialogsPageType ={
+export type DialogsPageType = {
     dialogs: DialogsType
     messages: MessagesType
     messageCurrentValue: string
 }
-//state type
-export type RootStateType ={
+/*-------main------*/
+export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
-//store type
+/*------STATE TYPE------*/
+
+/*------------STORE TYPE------------*/
 export type StoreType = {
     _state: RootStateType
-    _callbackSubscriber: (state: RootStateType)=>void
-    getState: ()=>RootStateType
-    addPost: (src: 1|2)=>void
-    sendMessage: ()=>void
-    onMessageChange: (text: string)=>void
-    onPostInputChange: (text: string)=>void
-    subscribe: (observer: ()=>void)=>void
+    _callbackSubscriber: (state: RootStateType) => void
+    getState: () => RootStateType
+    subscribe: (observer: () => void) => void
+    dispatch: (action: ActionsType) => void
 }
+/*------------STORE TYPE------------*/
+/*----DISPATCH ACTIONS----*/
+type AddPostActionType = {
+    type: 'ADD-POST'
+    src: 1 | 2
+}
+type SendMessageActionType = {
+    type: 'SEND-MESSAGE'
+}
+type MessageChangeActionType = {
+    type: 'MESSAGE-CHANGE'
+    text: string
+}
+type PostInputChangeActionType = {
+    type: 'POST-INPUT-CHANGE'
+    text: string
+}
+/*--general type--*/
+export type ActionsType = AddPostActionType | SendMessageActionType | MessageChangeActionType | PostInputChangeActionType
+/*--general type--*/
+/*----DISPATCH ACTIONS----*/
+
 /*---------------------------STORE---------------------------*/
 
-export const store: StoreType  = {
+export const store: StoreType = {
     _state: {
         profilePage: {
             post: [
@@ -72,6 +91,7 @@ export const store: StoreType  = {
                 {id: '@Genius', name: 'Genius'},
                 {id: '@Uncle', name: 'Uncle'},
                 {id: '@GQtpe', name: 'GQtpe'},
+                {id: '@Alina', name: 'Alina'},
             ],
             messages: [
                 {id: 1, sent: true, message: 'Hi!'},
@@ -87,42 +107,42 @@ export const store: StoreType  = {
     getState() {
         return this._state
     },
-    _callbackSubscriber (state: RootStateType){
+    _callbackSubscriber(state: RootStateType) {
 
     },
-    addPost(src: 1 | 2) {
-
-        let newPost: PostType = {
-            id: this._state.profilePage.post[this._state.profilePage.post.length - 1].id + 1,
-            src: src === 1 ? firstSrc : secondSrc,
-            message: this._state.profilePage.newPostText,
-        }
-        this._state.profilePage.post.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callbackSubscriber(this._state)
-    },
-    sendMessage() {
-        let newMessage: MessageType = {
-            id: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1,
-            sent: true,
-            message: this._state.dialogsPage.messageCurrentValue
-        }
-        this._state.dialogsPage.messages.push(newMessage)
-        this._state.dialogsPage.messageCurrentValue = ''
-        this._callbackSubscriber(this._state);
-    },
-    onMessageChange(text: string) {
-        this._state.dialogsPage.messageCurrentValue = `${text}`
-        this._callbackSubscriber(this._state)
-    },
-    onPostInputChange(text: string) {
-        this._state.profilePage.newPostText = `${text}`
-        this._callbackSubscriber(this._state);
-
-    },
-    subscribe(observer: ()=>void){
+    subscribe(observer: () => void) {
         this._callbackSubscriber = observer
     },
+    dispatch(action) { //{type: string, args..}
+        if (action.type === 'ADD-POST') {
+            let newPost: PostType = {
+                id: this._state.profilePage.post[this._state.profilePage.post.length - 1].id + 1,
+                src: action.src === 1 ? firstSrc : secondSrc,
+                message: this._state.profilePage.newPostText,
+            }
+            this._state.profilePage.post.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callbackSubscriber(this._state)
+        }
+        if (action.type === 'SEND-MESSAGE') {
+            let newMessage: MessageType = {
+                id: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1,
+                sent: true,
+                message: this._state.dialogsPage.messageCurrentValue
+            }
+            this._state.dialogsPage.messages.push(newMessage)
+            this._state.dialogsPage.messageCurrentValue = ''
+            this._callbackSubscriber(this._state);
+        }
+        if (action.type === 'MESSAGE-CHANGE') {
+            this._state.dialogsPage.messageCurrentValue = `${action.text}`
+            this._callbackSubscriber(this._state)
+        }
+        if (action.type === 'POST-INPUT-CHANGE') {
+            this._state.profilePage.newPostText = `${action.text}`
+            this._callbackSubscriber(this._state);
+        }
+    }
 }
 
 /*---------------------------STORE---------------------------*/
