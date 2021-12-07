@@ -5,6 +5,7 @@ export type PostType = {
     id: number
     src: string
     message: string
+    like: boolean
 }
 export type DialogType = {
     id: string
@@ -59,8 +60,17 @@ type PostInputChangeActionType = {
     type: 'POST-INPUT-CHANGE'
     text: string
 }
+type LikeClickActionType = {
+    type: 'LIKE-CLICK'
+    id: number
+}
 /*--general type--*/
-export type ActionsType = AddPostActionType | SendMessageActionType | MessageChangeActionType | PostInputChangeActionType
+export type ActionsType =
+    AddPostActionType
+    | SendMessageActionType
+    | MessageChangeActionType
+    | PostInputChangeActionType
+    | LikeClickActionType
 /*--general type--*/
 /*----DISPATCH ACTIONS----*/
 
@@ -70,15 +80,15 @@ export const store: StoreType = {
     _state: {
         profilePage: {
             post: [
-                {id: 1, src: firstSrc, message: 'hi how are you?'},
-                {id: 2, src: secondSrc, message: 'hi i am good ;)'},
-                {id: 3, src: firstSrc, message: 'What happened?'},
-                {id: 4, src: secondSrc, message: ')'},
-                {id: 5, src: secondSrc, message: 'I got up with my right foot'},
-                {id: 6, src: firstSrc, message: 'It is cool'},
-                {id: 7, src: firstSrc, message: 'I m coool too'},
-                {id: 7, src: secondSrc, message: 'Bye unknown'},
-                {id: 8, src: firstSrc, message: 'Bye anonimous'},
+                {id: 1, src: firstSrc, message: 'hi how are you?', like: false},
+                {id: 2, src: secondSrc, message: 'hi i am good ;)', like: false},
+                {id: 3, src: firstSrc, message: 'What happened?', like: false},
+                {id: 4, src: secondSrc, message: ')', like: false},
+                {id: 5, src: secondSrc, message: 'I got up with my right foot', like: false},
+                {id: 6, src: firstSrc, message: 'It is cool', like: false},
+                {id: 7, src: firstSrc, message: 'I m coool too', like: false},
+                {id: 8, src: secondSrc, message: 'Bye unknown', like: false},
+                {id: 9, src: firstSrc, message: 'Bye anonimous', like: false},
             ],
             newPostText: '',
         },
@@ -119,6 +129,7 @@ export const store: StoreType = {
                 id: this._state.profilePage.post[this._state.profilePage.post.length - 1].id + 1,
                 src: action.src === 1 ? firstSrc : secondSrc,
                 message: this._state.profilePage.newPostText,
+                like: false
             }
             this._state.profilePage.post.push(newPost)
             this._state.profilePage.newPostText = ''
@@ -141,6 +152,11 @@ export const store: StoreType = {
         if (action.type === 'POST-INPUT-CHANGE') {
             this._state.profilePage.newPostText = `${action.text}`
             this._callbackSubscriber(this._state);
+        }
+        if (action.type === 'LIKE-CLICK') {
+            let newState = this._state
+            newState.profilePage.post[action.id].like = !newState.profilePage.post[action.id].like;
+            this._callbackSubscriber({ ...newState})
         }
     }
 }

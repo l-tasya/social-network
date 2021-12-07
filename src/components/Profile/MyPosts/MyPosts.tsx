@@ -2,14 +2,8 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './MyPosts.module.scss'
 import Post from './Post/Post';
 import {Plus} from 'react-feather';
-import {ActionsType} from '../../../redux/state';
+import {ActionsType, PostType} from '../../../redux/state';
 
-//types
-type PostType = {
-    id: number
-    src: string
-    message: string
-}
 
 type MyPostsPropsType = {
     state: Array<PostType>
@@ -20,7 +14,7 @@ type MyPostsPropsType = {
 const MyPosts: React.FC<MyPostsPropsType> = ({state, newPostText,dispatch}) => {
     //converting post state to Post component
     let [error, setError] = useState<'required field'|''>('')
-    let postElements = state.map((t) => <Post key={t.id} message={t.message} img={t.src}/>)
+    let postElements = state.map((t) => <Post dispatch={dispatch} key={t.id} id={t.id} message={t.message} img={t.src} like={t.like}/>)
 
     //Event Handlers
     let onAddPostButtonClick = (e: any) => {
