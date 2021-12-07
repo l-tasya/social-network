@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import {RootStateType} from './redux/state';
+import {ActionsType, RootStateType} from './redux/state';
 import {Header} from './components/Header/Header';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
@@ -13,10 +13,7 @@ import Settings from './components/Settings/Settings';
 //types
 type AppPropsType = {
     state: RootStateType
-    changePosts: (src: 1 | 2) => void
-    changeInput: (text: string) => void
-    changeMessage: (text: string)=>void
-    sendMessage: ()=>void
+    dispatch: (action: ActionsType)=>void
 }
 
 
@@ -27,10 +24,10 @@ const App: React.FC<AppPropsType> = (props) => {
                 <Header title={'Social Network'}/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route render={() =><Profile changeInput={props.changeInput} addPost={props.changePosts} state={props.state.profilePage}/>} path='/social-network/profile'/>
+                    <Route render={() =><Profile dispatch={props.dispatch} state={props.state.profilePage}/>} path='/social-network/profile'/>
 
 
-                    <Route render={() => <Dialogs changeMessage={props.changeMessage} sendMessage={props.sendMessage} state={props.state.dialogsPage}/>} path='/social-network/dialogs'/>
+                    <Route render={() => <Dialogs dispatch={props.dispatch} state={props.state.dialogsPage}/>} path='/social-network/dialogs'/>
 
 
 
