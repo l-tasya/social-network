@@ -11,10 +11,7 @@ let rerenderEntireTree = (state: RootStateType,)=>{
         <React.StrictMode>
             <App
                 state={state}
-                changePosts={store.addPost.bind(store)}
-                changeInput={store.onPostInputChange.bind(store)}
-                changeMessage={store.onMessageChange.bind(store)}
-                sendMessage={store.sendMessage.bind(store)}
+                dispatch={store.dispatch.bind(store)}
 
             />
         </React.StrictMode>,
