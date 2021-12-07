@@ -11,7 +11,6 @@ type PropsType = {
     dispatch: (action: ActionsType)=>void
 }
 const Post: React.FC<PropsType> = (props) => {
-    //todo: beautiful like button and like counter(1.9k, 9k, 9M, ...)
     const onLikeButtonClick = () =>{
         props.dispatch({type: 'LIKE-CLICK', id: props.id-1})
     }
