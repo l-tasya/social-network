@@ -44,39 +44,16 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 /*------------STORE TYPE------------*/
-/*----DISPATCH ACTIONS----*/
-type AddPostActionType = {
-    type: 'ADD-POST'
-    src: 1 | 2
-}
-type SendMessageActionType = {
-    type: 'SEND-MESSAGE'
-}
-type MessageChangeActionType = {
-    type: 'MESSAGE-CHANGE'
-    text: string
-}
-type PostInputChangeActionType = {
-    type: 'POST-INPUT-CHANGE'
-    text: string
-}
-type LikeClickActionType = {
-    type: 'LIKE-CLICK'
-    id: number
-}
-type FakeDialogsActiontype = {
-    type: 'FAKE-DIALOGS'
-}
-/*--general type--*/
+/*--actions type--*/
 export type ActionsType =
-    AddPostActionType
-    | SendMessageActionType
-    | MessageChangeActionType
-    | PostInputChangeActionType
-    | LikeClickActionType
-    | FakeDialogsActiontype
-/*--general type--*/
-/*----DISPATCH ACTIONS----*/
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof sendMessageAC>
+    | ReturnType<typeof messageChangeAC>
+    | ReturnType<typeof postInputChangeAC>
+    | ReturnType<typeof likeClickAC>
+    | ReturnType<typeof fakeDialogsAC>
+
+/*--actions type--*/
 
 /*---------------------------STORE---------------------------*/
 
@@ -122,7 +99,7 @@ export const store: StoreType = {
         return this._state
     },
     _callbackSubscriber(state: RootStateType) {
-
+        console.log(`App rendering... ${state}`)
     },
     subscribe(observer: () => void) {
         this._callbackSubscriber = observer
@@ -141,7 +118,7 @@ export const store: StoreType = {
         }
         if (action.type === 'SEND-MESSAGE') {
             let newMessage: MessageType = {
-                id:  this._state.dialogsPage.messages.length!== 0? this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1:1,
+                id: this._state.dialogsPage.messages.length !== 0 ? this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1 : 1,
                 sent: true,
                 message: this._state.dialogsPage.messageCurrentValue
             }
@@ -160,14 +137,50 @@ export const store: StoreType = {
         if (action.type === 'LIKE-CLICK') {
             let newState = this._state
             newState.profilePage.post[action.id].like = !newState.profilePage.post[action.id].like;
-            this._callbackSubscriber({ ...newState})
+            this._callbackSubscriber({...newState})
         }
-        if (action.type === 'FAKE-DIALOGS'){
+        if (action.type === 'FAKE-DIALOGS') {
             let temp = this._state
             temp.dialogsPage.messages = []
-            this._callbackSubscriber({ ...temp})
+            this._callbackSubscriber({...temp})
         }
     }
 }
 
 /*---------------------------STORE---------------------------*/
+/*----AC----*/
+export const addPostAC = (src: 1 | 2) => {
+    return {
+        type: 'ADD-POST',
+        src: src
+    } as const
+}
+export const sendMessageAC = () => {
+    return {
+        type: 'SEND-MESSAGE',
+    } as const
+}
+export const likeClickAC = (id: number) => {
+    return {
+        type: 'LIKE-CLICK',
+        id: id
+    } as const
+}
+export const fakeDialogsAC = () => {
+    return {
+        type: 'FAKE-DIALOGS',
+    } as const
+}
+export const postInputChangeAC = (text: string) => {
+    return {
+        type: 'POST-INPUT-CHANGE',
+        text: text,
+    } as const
+}
+export const messageChangeAC = (text: string) => {
+    return {
+        type: 'MESSAGE-CHANGE',
+        text: text
+    } as const
+}
+/*----AC----*/

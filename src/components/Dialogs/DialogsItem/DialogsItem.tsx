@@ -1,7 +1,7 @@
 import React from 'react';
 import s from '../Dialogs.module.scss';
 import {NavLink} from 'react-router-dom';
-import {ActionsType} from '../../../redux/state';
+import {ActionsType, fakeDialogsAC} from '../../../redux/state';
 
 type DialogPropsType = {
     name: string,
@@ -10,7 +10,7 @@ type DialogPropsType = {
 }
 
 const DialogsItem = (props: DialogPropsType) => {
-    return <NavLink onClick={() => props.dispatch({type: 'FAKE-DIALOGS'})} activeClassName={s.active}
+    return <NavLink onClick={() => props.dispatch(fakeDialogsAC())} activeClassName={s.active}
                     to={`/social-network/dialogs/${props.id}`}>{props.name}</NavLink>
 }
 

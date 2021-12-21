@@ -1,7 +1,7 @@
 import React from "react";
 import s from './Post.module.scss'
 import {Heart} from 'react-feather';
-import {ActionsType} from '../../../../redux/state';
+import {ActionsType, likeClickAC} from '../../../../redux/state';
 
 type PropsType = {
     message: string,
@@ -12,7 +12,7 @@ type PropsType = {
 }
 const Post: React.FC<PropsType> = (props) => {
     const onLikeButtonClick = () =>{
-        props.dispatch({type: 'LIKE-CLICK', id: props.id-1})
+        props.dispatch(likeClickAC(props.id-1))
     }
     return (
         <div className={s.post}>
