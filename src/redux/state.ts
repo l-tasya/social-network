@@ -74,15 +74,8 @@ export const store: StoreType = {
                 eMail: 'dalionfull@gmail.com'
             },
             post: [
-                {id: 1, src: firstSrc, message: 'hi how are you?', like: false},
-                {id: 2, src: secondSrc, message: 'hi i am good ;)', like: false},
-                {id: 3, src: firstSrc, message: 'What happened?', like: false},
-                {id: 4, src: secondSrc, message: ')', like: false},
-                {id: 5, src: secondSrc, message: 'I got up with my right foot', like: false},
-                {id: 6, src: firstSrc, message: 'It is cool', like: false},
-                {id: 7, src: firstSrc, message: 'I m coool too', like: false},
-                {id: 8, src: secondSrc, message: 'Bye unknown', like: false},
-                {id: 9, src: firstSrc, message: 'Bye anonimous', like: false},
+                {id: 1, src: secondSrc, message: 'That is my wall?', like: false},
+
             ],
             newPostText: '',
         },
