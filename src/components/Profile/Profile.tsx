@@ -13,7 +13,7 @@ type ProfilePropsType = {
 const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div className={s.content}>
-            <UserInfo/>
+            <UserInfo state={props.state.userInfo} />
             <Statistics />
             <MyPosts
                 newPostText={props.state.newPostText}

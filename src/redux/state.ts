@@ -19,7 +19,14 @@ export type MessageType = {
 export type PostsType = Array<PostType>
 export type DialogsType = Array<DialogType>
 export type MessagesType = Array<MessageType>
+export type UserInfoType = {
+    imageSRC: string
+    name: string
+    surname: string
+    eMail: string
+}
 export type ProfilePageType = {
+    userInfo: UserInfoType
     post: PostsType
     newPostText: string
 }
@@ -60,6 +67,12 @@ export type ActionsType =
 export const store: StoreType = {
     _state: {
         profilePage: {
+            userInfo: {
+                imageSRC: 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
+                name: 'Temirtas',
+                surname: 'Nursain',
+                eMail: 'dalionfull@gmail.com'
+            },
             post: [
                 {id: 1, src: firstSrc, message: 'hi how are you?', like: false},
                 {id: 2, src: secondSrc, message: 'hi i am good ;)', like: false},

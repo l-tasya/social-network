@@ -1,20 +1,29 @@
 import React from 'react';
 import {Mail, MoreHorizontal} from 'react-feather';
 import s from './UserInfo.module.scss'
+import {UserInfoType} from '../../../redux/state';
 
-const UserInfo: React.FC = (props) => {
+type UserInfoPropsType = {
+    state: UserInfoType
+}
+
+
+const UserInfo: React.FC<UserInfoPropsType> = (props) => {
+    let backgroundImageStyle = {
+        background: 'red'
+    }
     return (
         <div className={s.userInfo}>
-            <div className={s.userInfo__img}>
+            <div className={s.userInfo__img} style={backgroundImageStyle}>
                 <div>
                     background image
                 </div>
             </div>
             <div className={s.userInfo__info}>
-                <img className={s.userInfo__ava} src={'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'} alt=''/>
+                <img className={s.userInfo__ava} src={props.state.imageSRC} alt=''/>
                 <div>
-                    <div className={s.userInfo__title}>Name Surname</div>
-                    <div className={s.userInfo__subtitle}>dalionfull@gmail.com</div>
+                    <div className={s.userInfo__title}>{props.state.name} {props.state.surname}</div>
+                    <div className={s.userInfo__subtitle}>{props.state.eMail}</div>
                 </div>
                 <div className={`${s.userInfo__buttons} ${s.buttons}`}>
                     <button className={s.buttons__friendAdd}>ADD FRIEND</button>
