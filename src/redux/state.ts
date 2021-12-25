@@ -1,30 +1,50 @@
 let firstSrc = 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
 let secondSrc = 'https://static.turbosquid.com/Preview/001325/881/YD/_600.jpg';
 /*------STATE TYPE------*/
-export type PostType = {
-    id: number
-    src: string
-    message: string
-    like: boolean
-}
-export type DialogType = {
-    id: string
-    name: string
-}
-export type MessageType = {
-    id: number
-    message: string
-    sent: boolean
-}
-export type PostsType = Array<PostType>
-export type DialogsType = Array<DialogType>
-export type MessagesType = Array<MessageType>
+
 export type UserInfoType = {
     imageSRC: string
     name: string
     surname: string
     eMail: string
 }
+
+export type PostType = {
+    id: number
+    src: string
+    message: string
+}
+export type PostsType = Array<PostType>
+
+export type DialogType = {
+    id: string
+    name: string
+}
+export type DialogsType = Array<DialogType>
+
+export type MessageType = {
+    id: number
+    message: string
+    sent: boolean
+}
+export type MessagesType = Array<MessageType>
+
+export type FeedStoryType = {
+    user: {
+        name: string
+        surname: string
+        imageSRC: string
+    },
+    story: any
+}
+export type FeedStoriesType = Array<FeedStoryType>
+export type FeedPostType = {
+    id: number
+    src: string
+    message: string
+}
+export type FeedPostsType = Array<FeedPostType>
+
 export type ProfilePageType = {
     userInfo: UserInfoType
     post: PostsType
@@ -33,12 +53,19 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: DialogsType
     messages: MessagesType
-    messageCurrentValue: string
+    newMessageText: string
+}
+export type NewsPageType = {
+    userInfo: UserInfoType
+    feedStories: FeedStoriesType
+    feedNewPostText: string
+    feedPosts: FeedPostsType
 }
 /*-------main------*/
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+    newsPage: NewsPageType
 }
 /*------STATE TYPE------*/
 
@@ -55,10 +82,11 @@ export type StoreType = {
 export type ActionsType =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof sendMessageAC>
-    | ReturnType<typeof messageChangeAC>
-    | ReturnType<typeof postInputChangeAC>
-    | ReturnType<typeof likeClickAC>
+    | ReturnType<typeof dialogInputChangeAC>
+    | ReturnType<typeof profileInputChangeAC>
     | ReturnType<typeof fakeDialogsAC>
+    | ReturnType<typeof addFeedPostAC>
+    | ReturnType<typeof feedInputChangeAC>
 
 /*--actions type--*/
 
@@ -74,7 +102,7 @@ export const store: StoreType = {
                 eMail: 'dalionfull@gmail.com'
             },
             post: [
-                {id: 1, src: secondSrc, message: 'That is my wall?', like: false},
+                {id: 1, src: secondSrc, message: 'That is my wall?'},
 
             ],
             newPostText: '',
@@ -98,7 +126,20 @@ export const store: StoreType = {
                 {id: 5, sent: true, message: 'Ok, bye'},
                 {id: 6, sent: false, message: 'Bye'},
             ],
-            messageCurrentValue: ''
+            newMessageText: ''
+        },
+        newsPage: {
+            userInfo: {
+                imageSRC: 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
+                name: 'Temirtas',
+                surname: 'Nursain',
+                eMail: 'dalionfull@gmail.com'
+            },
+            feedStories: [],
+            feedNewPostText: '',
+            feedPosts: [
+                {id: 1, src: secondSrc, message: 'LALALA' }
+            ],
         }
     },
     getState() {
@@ -116,7 +157,6 @@ export const store: StoreType = {
                 id: this._state.profilePage.post[this._state.profilePage.post.length - 1].id + 1,
                 src: action.src === 1 ? firstSrc : secondSrc,
                 message: this._state.profilePage.newPostText,
-                like: false
             }
             this._state.profilePage.post.push(newPost)
             this._state.profilePage.newPostText = ''
@@ -126,29 +166,38 @@ export const store: StoreType = {
             let newMessage: MessageType = {
                 id: this._state.dialogsPage.messages.length !== 0 ? this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1 : 1,
                 sent: true,
-                message: this._state.dialogsPage.messageCurrentValue
+                message: this._state.dialogsPage.newMessageText
             }
             this._state.dialogsPage.messages.push(newMessage)
-            this._state.dialogsPage.messageCurrentValue = ''
+            this._state.dialogsPage.newMessageText = ''
             this._callbackSubscriber(this._state);
         }
-        if (action.type === 'MESSAGE-CHANGE') {
-            this._state.dialogsPage.messageCurrentValue = `${action.text}`
+        if (action.type === 'DIALOG-INPUT-CHANGE') {
+            this._state.dialogsPage.newMessageText = `${action.text}`
             this._callbackSubscriber(this._state)
         }
-        if (action.type === 'POST-INPUT-CHANGE') {
+        if (action.type === 'PROFILE-INPUT-CHANGE') {
             this._state.profilePage.newPostText = `${action.text}`
             this._callbackSubscriber(this._state);
-        }
-        if (action.type === 'LIKE-CLICK') {
-            let newState = this._state
-            newState.profilePage.post[action.id].like = !newState.profilePage.post[action.id].like;
-            this._callbackSubscriber({...newState})
         }
         if (action.type === 'FAKE-DIALOGS') {
             let temp = this._state
             temp.dialogsPage.messages = []
             this._callbackSubscriber({...temp})
+        }
+        if (action.type === 'ADD-FEED-POST') {
+            let newFeedPost: FeedPostType = {
+                id: this._state.newsPage.feedPosts[this._state.newsPage.feedPosts.length - 1].id + 1,
+                message: this._state.newsPage.feedNewPostText,
+                src: action.src === 1 ? firstSrc : secondSrc,
+            }
+            this._state.newsPage.feedPosts.push(newFeedPost)
+            this._state.newsPage.feedNewPostText = ''
+            this._callbackSubscriber(this._state)
+        }
+        if (action.type === 'FEED-INPUT-CHANGE'){
+            this._state.newsPage.feedNewPostText = `${action.text}`
+            this._callbackSubscriber(this._state);
         }
     }
 }
@@ -166,27 +215,35 @@ export const sendMessageAC = () => {
         type: 'SEND-MESSAGE',
     } as const
 }
-export const likeClickAC = (id: number) => {
-    return {
-        type: 'LIKE-CLICK',
-        id: id
-    } as const
-}
 export const fakeDialogsAC = () => {
     return {
         type: 'FAKE-DIALOGS',
     } as const
 }
-export const postInputChangeAC = (text: string) => {
+export const profileInputChangeAC = (text: string) => {
     return {
-        type: 'POST-INPUT-CHANGE',
+        type: 'PROFILE-INPUT-CHANGE',
         text: text,
     } as const
 }
-export const messageChangeAC = (text: string) => {
+export const dialogInputChangeAC = (text: string) => {
     return {
-        type: 'MESSAGE-CHANGE',
+        type: 'DIALOG-INPUT-CHANGE',
         text: text
     } as const
 }
+export const addFeedPostAC = (src: 1 | 2) => {
+    return {
+        type: 'ADD-FEED-POST',
+        src: src
+    } as const
+
+}
+export const feedInputChangeAC = (text: string) =>{
+    return {
+        type: 'FEED-INPUT-CHANGE',
+        text: text
+    } as const
+}
+
 /*----AC----*/
