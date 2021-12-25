@@ -30,12 +30,10 @@ const App: React.FC<AppPropsType> = (props) => {
                     <Route render={() => <Dialogs dispatch={props.dispatch} state={props.state.dialogsPage}/>} path='/social-network/dialogs'/>
 
 
+                    <Route render={() => <News dispatch={props.dispatch} state={props.state.newsPage}/>} path='/social-network/feed'/>
+
 
                     <Route render={() => <Music/>} path='/social-network/audio'/>
-
-
-
-                    <Route render={() => <News/>} path='/social-network/feed'/>
 
 
 
