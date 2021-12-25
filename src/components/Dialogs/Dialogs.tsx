@@ -3,7 +3,8 @@ import s from './Dialogs.module.scss';
 import Message from './Message/Message';
 import DialogsItem from './DialogsItem/DialogsItem';
 import {ArrowRight, MessageCircle} from 'react-feather';
-import {ActionsType, DialogsPageType, dialogInputChangeAC, sendMessageAC} from '../../redux/state';
+import {ActionsType, DialogsPageType} from '../../redux/state';
+import {dialogInputChangeAC, sendMessageAC} from '../../redux/dialogs-reducer';
 
 type DialogsPropsType = {
     state: DialogsPageType

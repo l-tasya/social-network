@@ -1,7 +1,8 @@
 import React from 'react';
 import s from '../Dialogs.module.scss';
 import {NavLink} from 'react-router-dom';
-import {ActionsType, fakeDialogsAC} from '../../../redux/state';
+import {ActionsType} from '../../../redux/state';
+import {fakeDialogsAC} from '../../../redux/dialogs-reducer';
 
 type DialogPropsType = {
     name: string,

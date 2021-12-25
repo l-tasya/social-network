@@ -1,8 +1,10 @@
 import React from 'react';
 import {PostTextArea} from '../common/PostTextArea/PostTextArea';
-import {ActionsType, addFeedPostAC, feedInputChangeAC, NewsPageType} from '../../redux/state';
+import {ActionsType, NewsPageType} from '../../redux/state';
 import s from './News.module.scss';
 import Post from '../Profile/MyPosts/Post/Post';
+import {Stories} from './Stories/Stories';
+import {addFeedPostAC, feedInputChangeAC} from '../../redux/feed-reducer';
 
 type NewsPropsType = {
     dispatch: (action: ActionsType) => void
@@ -12,7 +14,7 @@ type NewsPropsType = {
 const News: React.FC<NewsPropsType> = ({dispatch, state}) => {
     return (
         <div className={s.feed}>
-            {/*<Stories/>*/}
+            <Stories/>
             <PostTextArea value={state.feedNewPostText}
                           onChangeText={(text) => dispatch(feedInputChangeAC(text))}
                           user={state.userInfo}

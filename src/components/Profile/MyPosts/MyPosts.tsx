@@ -1,8 +1,9 @@
 import React from 'react';
 import s from './MyPosts.module.scss'
 import Post from './Post/Post';
-import {ActionsType, addPostAC, profileInputChangeAC, ProfilePageType} from '../../../redux/state';
+import {ActionsType, ProfilePageType} from '../../../redux/state';
 import {PostTextArea} from '../../common/PostTextArea/PostTextArea';
+import {addPostAC, profileInputChangeAC} from '../../../redux/profile-reducer';
 
 
 type MyPostsPropsType = {

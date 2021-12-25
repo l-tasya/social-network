@@ -1,5 +1,9 @@
-let firstSrc = 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
-let secondSrc = 'https://static.turbosquid.com/Preview/001325/881/YD/_600.jpg';
+import {addPostAC, profileInputChangeAC, profileReducer} from './profile-reducer';
+import {dialogInputChangeAC, dialogsReducer, fakeDialogsAC, sendMessageAC} from './dialogs-reducer';
+import {addFeedPostAC, feedInputChangeAC, feedReducer} from './feed-reducer';
+
+export let firstSrc = 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
+export let secondSrc = 'https://static.turbosquid.com/Preview/001325/881/YD/_600.jpg';
 /*------STATE TYPE------*/
 
 export type UserInfoType = {
@@ -138,7 +142,7 @@ export const store: StoreType = {
             feedStories: [],
             feedNewPostText: '',
             feedPosts: [
-                {id: 1, src: secondSrc, message: 'LALALA' }
+                {id: 1, src: secondSrc, message: 'LALALA'}
             ],
         }
     },
@@ -152,98 +156,16 @@ export const store: StoreType = {
         this._callbackSubscriber = observer
     },
     dispatch(action) { //{type: string, args..}
-        if (action.type === 'ADD-POST') {
-            let newPost: PostType = {
-                id: this._state.profilePage.post[this._state.profilePage.post.length - 1].id + 1,
-                src: action.src === 1 ? firstSrc : secondSrc,
-                message: this._state.profilePage.newPostText,
-            }
-            this._state.profilePage.post.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callbackSubscriber(this._state)
-        }
-        if (action.type === 'SEND-MESSAGE') {
-            let newMessage: MessageType = {
-                id: this._state.dialogsPage.messages.length !== 0 ? this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1 : 1,
-                sent: true,
-                message: this._state.dialogsPage.newMessageText
-            }
-            this._state.dialogsPage.messages.push(newMessage)
-            this._state.dialogsPage.newMessageText = ''
-            this._callbackSubscriber(this._state);
-        }
-        if (action.type === 'DIALOG-INPUT-CHANGE') {
-            this._state.dialogsPage.newMessageText = `${action.text}`
-            this._callbackSubscriber(this._state)
-        }
-        if (action.type === 'PROFILE-INPUT-CHANGE') {
-            this._state.profilePage.newPostText = `${action.text}`
-            this._callbackSubscriber(this._state);
-        }
-        if (action.type === 'FAKE-DIALOGS') {
-            let temp = this._state
-            temp.dialogsPage.messages = []
-            this._callbackSubscriber({...temp})
-        }
-        if (action.type === 'ADD-FEED-POST') {
-            let newFeedPost: FeedPostType = {
-                id: this._state.newsPage.feedPosts[this._state.newsPage.feedPosts.length - 1].id + 1,
-                message: this._state.newsPage.feedNewPostText,
-                src: action.src === 1 ? firstSrc : secondSrc,
-            }
-            this._state.newsPage.feedPosts.push(newFeedPost)
-            this._state.newsPage.feedNewPostText = ''
-            this._callbackSubscriber(this._state)
-        }
-        if (action.type === 'FEED-INPUT-CHANGE'){
-            this._state.newsPage.feedNewPostText = `${action.text}`
-            this._callbackSubscriber(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.newsPage = feedReducer(this._state.newsPage, action)
+        this._callbackSubscriber(this._state)
+
+
+
+
+
+
     }
 }
-
 /*---------------------------STORE---------------------------*/
-/*----AC----*/
-export const addPostAC = (src: 1 | 2) => {
-    return {
-        type: 'ADD-POST',
-        src: src
-    } as const
-}
-export const sendMessageAC = () => {
-    return {
-        type: 'SEND-MESSAGE',
-    } as const
-}
-export const fakeDialogsAC = () => {
-    return {
-        type: 'FAKE-DIALOGS',
-    } as const
-}
-export const profileInputChangeAC = (text: string) => {
-    return {
-        type: 'PROFILE-INPUT-CHANGE',
-        text: text,
-    } as const
-}
-export const dialogInputChangeAC = (text: string) => {
-    return {
-        type: 'DIALOG-INPUT-CHANGE',
-        text: text
-    } as const
-}
-export const addFeedPostAC = (src: 1 | 2) => {
-    return {
-        type: 'ADD-FEED-POST',
-        src: src
-    } as const
-
-}
-export const feedInputChangeAC = (text: string) =>{
-    return {
-        type: 'FEED-INPUT-CHANGE',
-        text: text
-    } as const
-}
-
-/*----AC----*/
