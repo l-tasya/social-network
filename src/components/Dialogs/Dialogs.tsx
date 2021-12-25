@@ -3,7 +3,7 @@ import s from './Dialogs.module.scss';
 import Message from './Message/Message';
 import DialogsItem from './DialogsItem/DialogsItem';
 import {ArrowRight, MessageCircle} from 'react-feather';
-import {ActionsType, DialogsPageType, messageChangeAC, sendMessageAC} from '../../redux/state';
+import {ActionsType, DialogsPageType, dialogInputChangeAC, sendMessageAC} from '../../redux/state';
 
 type DialogsPropsType = {
     state: DialogsPageType
@@ -21,14 +21,14 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     //event handlers
     const onMessageInputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setError('')
-        props.dispatch(messageChangeAC(`${e.currentTarget.value}`))
+        props.dispatch(dialogInputChangeAC(`${e.currentTarget.value}`))
     }
     const enterKeyDownHandler = (e: React.KeyboardEvent) =>{
         e.key === "Enter" && onSentButtonClick()
     }
     //callback
     const onSentButtonClick = () =>{
-        if(props.state.messageCurrentValue.trim() === ''){
+        if(props.state.newMessageText.trim() === ''){
             setError('required field');
         }else{
             props.dispatch(sendMessageAC())
@@ -42,7 +42,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             </div>
             <div className={s.dialogs__messages}>
                 {messageElements}
-                <div className={s.dialogs__typing}><input value={props.state.messageCurrentValue}
+                <div className={s.dialogs__typing}><input value={props.state.newMessageText}
                                                           className={(error&&s.errorInput) + ' ' + s.dialogs__input} type="text"
                                                           placeholder={'Start typing..'}
                                                           onChange={onMessageInputChangeHandler}

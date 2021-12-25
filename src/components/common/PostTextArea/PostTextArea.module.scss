@@ -1,34 +1,54 @@
-.textarea {
-  position: relative;
-  margin-top: 16px;
-
-  img {
-    position: absolute;
-    margin: 8px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-  }
-
-  textarea {
+@import '../../../globals';
+.postADD {
+  @extend %web-block;
+  margin: 0 0 0 24px;
+  &__sendButton {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     width: 100%;
-    border: 2px solid #F1F1F1;
-    padding: 8px 8px 8px 48px;
-    height: 100px;
-    font-size: 15px;
-    line-height: 21px;
     color: #adb5bd;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    font-size: 15px;
+    background: white;
   }
-}
 
+  &__inputArea {
+    position: relative;
+    margin-top: 16px;
 
-.errorMessage {
-  color: red;
-  font-size: 12px;
-  padding-left: 15px;
-  display: block;
-  font-weight: 700;
+    img {
+      position: absolute;
+      margin: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+
+    textarea {
+      width: 100%;
+      border: 2px solid #F1F1F1;
+      padding: 8px 8px 8px 48px;
+      min-height: 60px;
+      min-width: 200px;
+      height: 100px;
+      font-size: 15px;
+      line-height: 21px;
+      color: #adb5bd;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+    }
+  }
+
+  &__spanERROR {
+    position: absolute;
+    background: white;
+    top: -3px;
+    left: 15%;
+    color: red;
+    font-size: 8px;
+    display: inline-block;
+    padding: 0 6px;
+    font-weight: 700;
+  }
 }

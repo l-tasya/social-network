@@ -3,31 +3,7 @@
 .myPosts {
   grid-area: p;
 
-  &__add {
-    @extend %web-block;
-    margin: 0 0 0 24px;
-    button {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      width: 100%;
-      color: #adb5bd;
-      font-size: 15px;
-      background: white;
-      img{
-        padding: 6px;
-        width: 35px;
-        height: 35px;
-        background: #F5F5F5;
-        border-radius: 50%;
-        margin-right: 5px;
-      }
 
-    }
-  }
-  .errorBorder{
-    border-color: red;
-  }
 
   .addPost{
     width: 150px;

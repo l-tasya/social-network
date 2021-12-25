@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import s from './Post.module.scss'
 import {Heart} from 'react-feather';
-import {ActionsType, likeClickAC} from '../../../../redux/state';
 
 type PropsType = {
     message: string,
     img: string
-    like: boolean
     id: number
-    dispatch: (action: ActionsType)=>void
 }
 const Post: React.FC<PropsType> = (props) => {
+    let [like, setLike] = useState<boolean>(false)
     const onLikeButtonClick = () =>{
-        props.dispatch(likeClickAC(props.id-1))
+        setLike(!like)
     }
     return (
         <div className={s.post}>
@@ -26,7 +24,7 @@ const Post: React.FC<PropsType> = (props) => {
             <div className={s.post__text}>
                 <div>{props.message}</div>
             </div>
-            <div className={s.footer}><Heart color={props.like?'red':'black'} onClick={onLikeButtonClick}  size={20} className={s.footer__like}/></div>
+            <div className={s.footer}><Heart color={like?'red':'black'} onClick={onLikeButtonClick}  size={20} className={s.footer__like}/></div>
         </div>
     )
 }

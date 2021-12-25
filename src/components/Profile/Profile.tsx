@@ -16,8 +16,7 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
             <UserInfo state={props.state.userInfo} />
             <Statistics />
             <MyPosts
-                newPostText={props.state.newPostText}
-                state={props.state.post}
+                state={props.state}
                 dispatch={props.dispatch}
             />
         </div>
