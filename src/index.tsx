@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {RootStateType, store} from './redux/state';
+import {RootStateType} from './redux/state';
+import store from './redux/redux-store'
 
 
 let rerenderEntireTree = (state: RootStateType,)=>{

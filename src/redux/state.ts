@@ -93,10 +93,8 @@ export type ActionsType =
     | ReturnType<typeof feedInputChangeAC>
 
 /*--actions type--*/
-
 /*---------------------------STORE---------------------------*/
-
-export const store: StoreType = {
+const store: StoreType = {
     _state: {
         profilePage: {
             userInfo: {
@@ -168,4 +166,5 @@ export const store: StoreType = {
 
     }
 }
+console.log(store)
 /*---------------------------STORE---------------------------*/

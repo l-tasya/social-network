@@ -1,6 +1,28 @@
 import {ActionsType, DialogsPageType, MessageType} from './state';
 
-export const dialogsReducer = (state: DialogsPageType, action: ActionsType) =>{
+let initialState = {
+    dialogs: [
+        {id: '@Tasya', name: 'Tasya'},
+        {id: '@Alex', name: 'Alex'},
+        {id: '@Fox', name: 'Fox'},
+        {id: '@Drill', name: 'Drill'},
+        {id: '@Genius', name: 'Genius'},
+        {id: '@Uncle', name: 'Uncle'},
+        {id: '@GQtpe', name: 'GQtpe'},
+        {id: '@Alina', name: 'Alina'},
+    ],
+    messages: [
+        {id: 1, sent: true, message: 'Hi!'},
+        {id: 2, sent: false, message: 'Hi!'},
+        {id: 3, sent: true, message: 'How do you feel'},
+        {id: 4, sent: false, message: 'I feel Incredibly good'},
+        {id: 5, sent: true, message: 'Ok, bye'},
+        {id: 6, sent: false, message: 'Bye'},
+    ],
+    newMessageText: ''
+}
+
+export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType) =>{
     if (action.type === 'SEND-MESSAGE') {
         let newMessage: MessageType = {
             id: state.messages.length !== 0 ? state.messages[state.messages.length - 1].id + 1 : 1,
