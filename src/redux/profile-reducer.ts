@@ -1,7 +1,7 @@
 import {ActionsType, PostType, ProfilePageType} from './state';
 export let firstSrc = 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
 export let secondSrc = 'https://static.turbosquid.com/Preview/001325/881/YD/_600.jpg';
-let initialState = {
+let initialState: ProfilePageType = {
     userInfo: {
         imageSRC: 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
         name: 'Temirtas',
