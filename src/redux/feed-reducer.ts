@@ -1,5 +1,5 @@
 import {ActionsType, FeedPostType, firstSrc, NewsPageType, secondSrc} from './state';
-let initialState = {
+let initialState: NewsPageType = {
     userInfo: {
         imageSRC: 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
         name: 'Temirtas',
