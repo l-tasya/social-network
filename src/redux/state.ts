@@ -66,15 +66,14 @@ export type NewsPageType = {
     feedPosts: FeedPostsType
 }
 /*-------main------*/
-export type RootStateType = {
+type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     newsPage: NewsPageType
 }
 /*------STATE TYPE------*/
 
-/*------------STORE TYPE------------*/
-export type StoreType = {
+/*------------STORE TYPE------------*/type StoreType = {
     _state: RootStateType
     _callbackSubscriber: (state: RootStateType) => void
     getState: () => RootStateType
