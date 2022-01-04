@@ -1,4 +1,25 @@
-import {ActionsType, DialogsPageType, MessageType} from './state';
+import {ActionsType} from './redux-store';
+
+
+export type DialogType = {
+    id: string
+    name: string
+}
+export type DialogsType = Array<DialogType>
+
+export type MessageType = {
+    id: number
+    message: string
+    sent: boolean
+}
+export type MessagesType = Array<MessageType>
+
+export type DialogsPageType = {
+    dialogs: DialogsType
+    messages: MessagesType
+    newMessageText: string
+    error: null | string
+}
 
 let initialState: DialogsPageType = {
     dialogs: [
@@ -19,11 +40,13 @@ let initialState: DialogsPageType = {
         {id: 5, sent: true, message: 'Ok, bye'},
         {id: 6, sent: false, message: 'Bye'},
     ],
-    newMessageText: ''
+    newMessageText: '',
+    error: null,
 }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType) =>{
+export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType):DialogsPageType  =>{
     if (action.type === 'SEND-MESSAGE') {
+        if(state.newMessageText.trim() !== ''){
         let newMessage: MessageType = {
             id: state.messages.length !== 0 ? state.messages[state.messages.length - 1].id + 1 : 1,
             sent: true,
@@ -31,8 +54,13 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
         }
         state.messages.push(newMessage)
         state.newMessageText = ''
+        }
+        if(state.newMessageText.trim() === ''){
+            state.error = 'required field'
+        }
     }
     if (action.type === 'DIALOG-INPUT-CHANGE') {
+        state.error = null
         state.newMessageText = `${action.text}`
     }
     if (action.type === 'FAKE-DIALOGS') {
