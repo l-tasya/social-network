@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import s from './PostTextArea.module.scss'
 import {Plus} from 'react-feather';
-import {UserInfoType} from '../../../redux/state';
+import { UserInfoType } from '../../../redux/profile-reducer';
 
 
 type PostTextAreaPropsType = {
