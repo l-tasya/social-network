@@ -1,4 +1,31 @@
-import {ActionsType, FeedPostType, firstSrc, NewsPageType, secondSrc} from './state';
+import { UserInfoType } from './profile-reducer';
+import { ActionsType } from './redux-store';
+import {firstSrc, secondSrc} from './state';
+
+export type FeedStoryType = {
+    user: {
+        name: string
+        surname: string
+        imageSRC: string
+    },
+    story: any
+}
+export type FeedStoriesType = Array<FeedStoryType>
+
+export type FeedPostType = {
+    id: number
+    src: string
+    message: string
+}
+export type FeedPostsType = Array<FeedPostType>
+
+export type NewsPageType = {
+    userInfo: UserInfoType
+    feedStories: FeedStoriesType
+    feedNewPostText: string
+    feedPosts: FeedPostsType
+}
+
 let initialState: NewsPageType = {
     userInfo: {
         imageSRC: 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
@@ -13,7 +40,7 @@ let initialState: NewsPageType = {
     ],
 }
 
-export const feedReducer = (state: NewsPageType =initialState, action: ActionsType) =>{
+export const feedReducer = (state: NewsPageType =initialState, action: ActionsType):NewsPageType =>{
     if (action.type === 'ADD-FEED-POST') {
         let newFeedPost: FeedPostType = {
             id: state.feedPosts[state.feedPosts.length - 1].id + 1,
