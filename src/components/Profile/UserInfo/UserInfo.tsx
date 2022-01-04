@@ -1,7 +1,8 @@
 import React from 'react';
 import {Mail, MoreHorizontal} from 'react-feather';
+import { UserInfoType } from '../../../redux/profile-reducer';
 import s from './UserInfo.module.scss'
-import {UserInfoType} from '../../../redux/state';
+
 
 type UserInfoPropsType = {
     state: UserInfoType
