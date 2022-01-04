@@ -23,21 +23,19 @@ const App: React.FC<AppPropsType> = (props) => {
                 <Header title={'Social Network'}/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route render={() =><Profile store={props.store}/>} path='/social-network/profile'/>
+                    <Route render={() => <Profile store={props.store}/>} path='/social-network/profile'/>
 
 
-                    <Route render={() => <DialogsContainer store={props.store}/>} path='/social-network/dialogs'/>
+                    <Route render={() => <DialogsContainer/>} path='/social-network/dialogs'/>
 
 
-                    <Route render={() => <NewsContainer store={props.store}/>} path='/social-network/feed'/>
+                    <Route render={() => <NewsContainer/>} path='/social-network/feed'/>
 
 
                     <Route render={() => <Music/>} path='/social-network/audio'/>
 
 
-
                     <Route render={() => <Settings/>} path='/social-network/settings'/>
-
 
 
                 </div>
