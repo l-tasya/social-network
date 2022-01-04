@@ -51,7 +51,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action:Act
     if (action.type === 'PROFILE-INPUT-CHANGE') {
         state.newPostText = `${action.text}`
     }
-    return state
+    return {...state}
 }/*----AC----*/
 export const addPostAC = (src: 1 | 2) => {
     return {

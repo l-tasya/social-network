@@ -54,7 +54,7 @@ export const feedReducer = (state: NewsPageType =initialState, action: ActionsTy
     if (action.type === 'FEED-INPUT-CHANGE') {
         state.feedNewPostText = `${action.text}`
     }
-    return state
+    return {...state}
 }
 export const addFeedPostAC = (src: 1 | 2) => {
     return {

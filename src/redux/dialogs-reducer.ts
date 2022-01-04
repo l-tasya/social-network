@@ -66,7 +66,7 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
     if (action.type === 'FAKE-DIALOGS') {
         state.messages = []
     }
-    return state
+    return {...state}
 }
 export const sendMessageAC = () => {
     return {
