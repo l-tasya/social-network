@@ -1,44 +1,57 @@
-import React, {ChangeEvent, useState} from 'react';
-import {dialogInputChangeAC, fakeDialogsAC, sendMessageAC} from '../../redux/dialogs-reducer';
-import {ReduxStoreType} from '../../redux/redux-store';
+import React, {ChangeEvent} from 'react';
+import {
+    dialogInputChangeAC,
+    DialogsType,
+    fakeDialogsAC,
+    MessagesType,
+    sendMessageAC
+} from '../../redux/dialogs-reducer';
+import {AppStateType} from '../../redux/redux-store';
 import Dialogs from './Dialogs';
+import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
 
-type DialogsContainerPropsType = {
-    store: ReduxStoreType
+
+type MapStatePropsType = {
+    error: null | string
+    newMessageText: string
+    dialogItems: DialogsType
+    dialogMessages: MessagesType
+
 }
 
-
-const DialogsContainer: React.FC<DialogsContainerPropsType> = ({store}) => {
-
-    let dialogItems = store.getState().dialogsPage.dialogs
-    let dialogMessages = store.getState().dialogsPage.messages
-
-    const onDialogItemClick = () =>{
-        store.dispatch(fakeDialogsAC())
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
+    return {
+        error: state.dialogsPage.error,
+        newMessageText: state.dialogsPage.newMessageText,
+        dialogItems: state.dialogsPage.dialogs,
+        dialogMessages: state.dialogsPage.messages
     }
-    let newMessageText = store.getState().dialogsPage.newMessageText
-    //local state
-    let [error, setError] = useState<string|null>(null);
-    //converting state to component
-
-    //event handlers
-    const onMessageInputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setError('')
-        store.dispatch(dialogInputChangeAC(`${e.currentTarget.value}`))
-    }
-    const enterKeyDownHandler = (e: React.KeyboardEvent) =>{
-        e.key === "Enter" && onSentButtonClick()
-    }
-    //callback
-    const onSentButtonClick = () =>{
-        if(store.getState().dialogsPage.newMessageText.trim() === ''){
-            setError('required field');
-        }else{
-            store.dispatch(sendMessageAC())
+}
+type MapDispatchPropsType = {
+    onSentButtonClick: () => void
+    onEnterKeyPress: (e: React.KeyboardEvent) => void
+    onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
+    onDialogItemClick: () => void
+}
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+    return {
+        onSentButtonClick: () => {
+            dispatch(sendMessageAC())
+        },
+        onEnterKeyPress: (e: React.KeyboardEvent) => {
+            e.key === 'Enter' && dispatch(sendMessageAC())
+        },
+        onInputChange: (e: ChangeEvent<HTMLInputElement>) => {
+            dispatch(dialogInputChangeAC(`${e.currentTarget.value}`))
+        },
+        onDialogItemClick: () => {
+            dispatch(fakeDialogsAC())
         }
     }
-    return <Dialogs onSentButtonClick={onSentButtonClick} onEnterKeyPress={enterKeyDownHandler} onInputChange={onMessageInputChangeHandler} error={error} newMessageText={newMessageText} dialogItems={dialogItems} dialogMessages={dialogMessages} onDialogItemClick={onDialogItemClick} />
 }
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer
 
