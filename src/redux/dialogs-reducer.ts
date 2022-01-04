@@ -50,14 +50,16 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
         let newMessage: MessageType = {
             id: state.messages.length !== 0 ? state.messages[state.messages.length - 1].id + 1 : 1,
             sent: true,
-            message: state.newMessageText
+            message: state.newMessageText.trim()
         }
+        state.error = null
         state.messages.push(newMessage)
-        state.newMessageText = ''
         }
         if(state.newMessageText.trim() === ''){
             state.error = 'required field'
         }
+        state.newMessageText = ''
+
     }
     if (action.type === 'DIALOG-INPUT-CHANGE') {
         state.error = null
