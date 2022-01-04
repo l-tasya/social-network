@@ -2,8 +2,9 @@ import {AppStateType} from '../../redux/redux-store';
 import News from './News';
 import {addFeedPostAC, feedInputChangeAC, FeedPostsType} from '../../redux/feed-reducer';
 import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
 import {UserInfoType} from '../../redux/profile-reducer';
+import {Dispatch} from 'redux';
+
 
 type MapStatePropsType = {
     feedPost: FeedPostsType
