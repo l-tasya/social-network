@@ -1,20 +1,36 @@
-import React from 'react';
-import {ReduxStoreType} from '../../redux/redux-store';
+import {AppStateType} from '../../redux/redux-store';
 import News from './News';
-import {addFeedPostAC, feedInputChangeAC} from '../../redux/feed-reducer';
+import {addFeedPostAC, feedInputChangeAC, FeedPostsType} from '../../redux/feed-reducer';
+import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
+import {UserInfoType} from '../../redux/profile-reducer';
 
-type NewsContainerPropsType = {
-   store: ReduxStoreType
+type MapStatePropsType = {
+    feedPost: FeedPostsType
+    userInfo: UserInfoType
+    feedNewPostText: string
 }
 
-const NewsContainer: React.FC<NewsContainerPropsType> = ({store}) => {
-    let feedNewPostText = store.getState().newsPage.feedNewPostText
-    const onPostChange = (text: string) => store.dispatch(feedInputChangeAC(text))
-    let userInfo = store.getState().newsPage.userInfo
-    const onItemAddClick = () => store.dispatch(addFeedPostAC(1))
-    let feedPost = store.getState().newsPage.feedPosts
-
-    return <News feedPost={feedPost} onItemAddClick={onItemAddClick} userInfo={userInfo} onPostChange={onPostChange} feedNewPostText={feedNewPostText}/>
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
+    return {
+        feedPost: state.newsPage.feedPosts,
+        userInfo: state.newsPage.userInfo,
+        feedNewPostText: state.newsPage.feedNewPostText,
+    }
 }
+type MapDispatchPropsType = {
+    onItemAddClick: () => void
+    onPostChange: (text: string) => void
+}
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+    return {
+        onItemAddClick: () => dispatch(addFeedPostAC(1)),
+        onPostChange: (text: string) => dispatch(feedInputChangeAC(text))
+    }
+}
+
+
+const NewsContainer = connect(mapStateToProps, mapDispatchToProps)(News)
+
 export default NewsContainer
 

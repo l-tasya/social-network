@@ -1,9 +1,10 @@
 import React from 'react';
 import {PostTextArea} from '../common/PostTextArea/PostTextArea';
-import {FeedPostsType, UserInfoType} from '../../redux/state';
 import s from './News.module.scss';
 import Post from '../Profile/MyPosts/Post/Post';
 import {Stories} from './Stories/Stories';
+import {UserInfoType} from '../../redux/profile-reducer';
+import {FeedPostsType} from '../../redux/feed-reducer';
 
 type NewsPropsType = {
     feedNewPostText: string
