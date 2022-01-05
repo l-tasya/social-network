@@ -2,9 +2,9 @@ import React from 'react';
 import {PostTextArea} from '../common/PostTextArea/PostTextArea';
 import s from './News.module.scss';
 import Post from '../Profile/MyPosts/Post/Post';
-import {Stories} from './Stories/Stories';
 import {UserInfoType} from '../../redux/profile-reducer';
 import {FeedPostsType} from '../../redux/feed-reducer';
+import {StoriesContainer} from './Stories/StoriesContainer';
 
 type NewsPropsType = {
     feedNewPostText: string
@@ -17,7 +17,7 @@ type NewsPropsType = {
 const News: React.FC<NewsPropsType> = (props) => {
     return (
         <div className={s.feed}>
-            <Stories/>
+            <StoriesContainer/>
             <PostTextArea value={props.feedNewPostText}
                           onChangeText={props.onPostChange}
                           user={props.userInfo}

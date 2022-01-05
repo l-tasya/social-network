@@ -21,11 +21,13 @@ const UserInfo: React.FC<UserInfoPropsType> = (props) => {
                 </div>
             </div>
             <div className={s.userInfo__info}>
-                <img className={s.userInfo__ava} src={props.state.imageSRC} alt=''/>
-                <div>
-                    <div className={s.userInfo__title}>{props.state.name} {props.state.surname}</div>
-                    <div className={s.userInfo__subtitle}>{props.state.eMail}</div>
-                </div>
+                <span className={s.userInfo__about}>
+                    <img className={s.userInfo__ava} src={props.state.imageSRC} alt=''/>
+                    <div>
+                        <div className={s.userInfo__title}>{props.state.name} {props.state.surname}</div>
+                        <div className={s.userInfo__subtitle}>{props.state.eMail}</div>
+                    </div>
+                </span>
                 <div className={`${s.userInfo__buttons} ${s.buttons}`}>
                     <button className={s.buttons__friendAdd}>ADD FRIEND</button>
                     <button className={s.buttons__chat}><Mail size={20}/></button>

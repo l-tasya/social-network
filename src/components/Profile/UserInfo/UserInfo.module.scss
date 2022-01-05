@@ -23,7 +23,10 @@
 
     }
   }
-
+  &__about{
+    display: flex;
+    align-items: center;
+  }
   &__info {
     display: flex;
     padding: 0 30px;
@@ -31,12 +34,12 @@
     z-index: 1;
     position: relative;
     top: -25px;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
 
   &__ava {
     background: white;
-    width: 100px;
+    min-width: 100px;
     height: 100px;
     border-radius: 50%;
     border: 7px solid white

@@ -9,6 +9,7 @@ import Settings from './components/Settings/Settings';
 import {ReduxStoreType} from './redux/redux-store';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NewsContainer from './components/News/NewsContainer';
+import { UsersContainer } from './components/Users/UsersContainer';
 
 //types
 type AppPropsType = {
@@ -27,6 +28,9 @@ const App: React.FC<AppPropsType> = (props) => {
 
 
                     <Route render={() => <DialogsContainer/>} path='/social-network/dialogs'/>
+
+
+                    <Route render={() => <UsersContainer/>} path='/social-network/users'/>
 
 
                     <Route render={() => <NewsContainer/>} path='/social-network/feed'/>

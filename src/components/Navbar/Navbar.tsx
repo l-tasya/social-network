@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import s from './Navbar.module.scss';
-import {AlignLeft, MessageSquare, Music, Settings, User} from 'react-feather';
+import {AlignLeft, MessageSquare, Music, Settings, User, Users} from 'react-feather';
 
 const Navbar = () => {
     return (
@@ -10,6 +10,10 @@ const Navbar = () => {
                 <NavLink activeClassName={s.active} className={s.nav__button} to='/social-network/profile'>
                     <User/>
                     <span>Profile</span>
+                </NavLink>
+                <NavLink activeClassName={s.active} className={s.nav__button} to='/social-network/users'>
+                    <Users/>
+                    <span>Users</span>
                 </NavLink>
                 <NavLink activeClassName={s.active} className={s.nav__button} to='/social-network/dialogs'>
                     <MessageSquare/>

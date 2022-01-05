@@ -1,3 +1,13 @@
 .stories{
-  display: flex
+  display: flex;
+
+  margin-left: 24px;
+  min-height: 200px;
+  width: 10030px;
+
+
+}
+.body{
+  width: 100%;
+  overflow-x: scroll;
 }

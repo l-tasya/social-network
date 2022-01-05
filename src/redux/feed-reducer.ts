@@ -1,5 +1,5 @@
-import { UserInfoType } from './profile-reducer';
-import { ActionsType } from './redux-store';
+import {UserInfoType} from './profile-reducer';
+import {ActionsType} from './redux-store';
 import {firstSrc, secondSrc} from './state';
 
 export type FeedStoryType = {
@@ -8,7 +8,8 @@ export type FeedStoryType = {
         surname: string
         imageSRC: string
     },
-    story: any
+    story: any,
+    id: number
 }
 export type FeedStoriesType = Array<FeedStoryType>
 
@@ -33,14 +34,34 @@ let initialState: NewsPageType = {
         surname: 'Nursain',
         eMail: 'dalionfull@gmail.com'
     },
-    feedStories: [],
+
+    feedStories: [
+        {
+            user: {
+                imageSRC: 'avatar',
+                name: 'Tasya',
+                surname: 'Tasya'
+            },
+            id: 1,
+            story: 'brown'
+        },
+        {
+            user: {
+                imageSRC: 'avatar',
+                name: 'User',
+                surname: 'Padj'
+            },
+            id: 2,
+            story: 'cornflowerblue'
+        },
+    ],
     feedNewPostText: '',
     feedPosts: [
         {id: 1, src: secondSrc, message: 'LALALA'}
     ],
 }
 
-export const feedReducer = (state: NewsPageType =initialState, action: ActionsType):NewsPageType =>{
+export const feedReducer = (state: NewsPageType = initialState, action: ActionsType): NewsPageType => {
     if (action.type === 'ADD-FEED-POST') {
         let newFeedPost: FeedPostType = {
             id: state.feedPosts[state.feedPosts.length - 1].id + 1,
