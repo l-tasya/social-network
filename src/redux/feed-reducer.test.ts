@@ -1,6 +1,5 @@
-import {dialogInputChangeAC, DialogsPageType, dialogsReducer, sendMessageAC} from './dialogs-reducer';
 import {addFeedPostAC, feedInputChangeAC, feedReducer, NewsPageType} from './feed-reducer';
-import { secondSrc } from './profile-reducer';
+import {secondSrc} from './profile-reducer';
 
 test('feed reducer should change newFeedPostText', ()=>{
     const startState: NewsPageType = {
