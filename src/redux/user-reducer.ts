@@ -1,5 +1,5 @@
 import {ActionsType} from './redux-store'
-import s from '../img/1558037341511.jpg'
+import s from '../img/JOJO.png'
 
 export type UserType = {
     id: number

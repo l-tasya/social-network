@@ -13,24 +13,35 @@ type UserPropsType = {
 }
 
 export const User: React.FC<UserPropsType> = (props) => {
-    let something = props.followed?'UNFOLLOW':'FOLLOW'
+    let something = props.followed ? 'REMOVE FRIEND' : 'ADD FRIEND'
+    let stylesForFollowButton = {
+        color: 'white',
+        minWidth: '120px',
+        background: props.followed? 'firebrick':'#10d876',
+        padding: '14px',
+        maxHeight: '50px',
+        borderRadius: '0.3rem',
+        fontWeight: '700',
+        fontFamily: 'Montserrat, sans-serif',
+        fontSize: '10px'
+    }
     return <div className={s.users}>
-        <div>
+        <div className={s.users__first}>
             <img src={props.userIMG} className={s.users__img} alt=""/>
             <button
-                onClick={()=>props.toggleFollow(props.userID)}>
+                onClick={() => props.toggleFollow(props.userID)}
+                style={stylesForFollowButton}
+            >
                 {
                     something
                 }
             </button>
         </div>
         <div>
-            <div>{props.userName}</div>
-            <div>{props.userStatus}</div>
+            <div className={s.users__name}>{props.userName}</div>
+                <div className={s.users__location}>Location: {props.country}, {props.city}</div>
+            <div className={s.users__status}>Status: {props.userStatus}</div>
         </div>
-        <div>
-            <div>{props.country}</div>
-            <div>{props.city}</div>
-        </div>
+
     </div>
 }
