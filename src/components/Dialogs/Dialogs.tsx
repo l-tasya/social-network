@@ -22,7 +22,8 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     //converting state to component
     let dialogElements = props.dialogItems.map((t) => <DialogsItem onDialogItemClick={props.onDialogItemClick}
                                                                    key={t.id} name={t.name} id={t.id}/>)
-    let messageElements = props.dialogMessages.map((t) => <Message sent={t.sent} key={t.id} text={t.message}/>)
+    let messageElements = props.dialogMessages.map((t) => <Message time={t.time} sent={t.sent} key={t.id}
+                                                                   text={t.message}/>)
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs__items}>
@@ -30,6 +31,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                 {dialogElements}
             </div>
             <div className={s.dialogs__messages}>
+
                 {messageElements}
                 <div className={s.dialogs__typing}><input value={props.newMessageText}
                                                           className={(props.error && s.errorInput) + ' ' + s.dialogs__input}

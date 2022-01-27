@@ -7,20 +7,22 @@ import store, {ReduxStoreType} from './redux/redux-store'
 import {Provider} from 'react-redux';
 
 
-let rerenderEntireTree = (store: ReduxStoreType)=>{
+let rerenderEntireTree = (store: ReduxStoreType) => {
     ReactDOM.render(
         <React.StrictMode>
             <Provider store={store}>
-            <App
-                store={store}
-            />
+                <App
+                    store={store}
+                />
             </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 rerenderEntireTree(store)
-store.subscribe(()=>{rerenderEntireTree(store)})
+store.subscribe(() => {
+    rerenderEntireTree(store)
+})
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

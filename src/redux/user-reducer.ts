@@ -9,6 +9,8 @@ export type UserType = {
     status: string
     country: string
     city: string
+    background: string
+    age: number
 }
 
 export type UserPageType = {
@@ -24,7 +26,9 @@ let initialState: UserPageType = {
             followed: false,
             fullName: 'Rakhat Sovet',
             country: 'Kazakhstan',
-            city: 'Nur-sultan'
+            city: 'Nur-sultan',
+            background: 'darkcyan',
+            age: 17
         },
         {
             id: 2,
@@ -33,7 +37,9 @@ let initialState: UserPageType = {
             followed: false,
             fullName: 'Ermekov Sanjar',
             country: 'Kazakhstan',
-            city: 'Nur-sultan'
+            city: 'Nur-sultan',
+            background: '#66bf3c',
+            age: 16
         },
         {
             id: 3,
@@ -42,7 +48,9 @@ let initialState: UserPageType = {
             followed: false,
             fullName: 'Bekzat Sultan',
             country: 'Kazakhstan',
-            city: 'Almaty'
+            city: 'Almaty',
+            background: 'chartreuse',
+            age: 17
         },
         {
             id: 4,
@@ -51,7 +59,9 @@ let initialState: UserPageType = {
             followed: false,
             fullName: 'Gabdullin Adilbek',
             country: 'Kazakhstan',
-            city: 'Almaty'
+            city: 'Almaty',
+            background: 'mediumvioletred',
+            age: 16
         },
         {
             id: 5,
@@ -60,7 +70,53 @@ let initialState: UserPageType = {
             followed: false,
             fullName: 'Kakimzhan Dias',
             country: 'Kazakhstan',
-            city: 'Almaty'
+            city: 'Almaty',
+            background: 'orangered',
+            age: 17
+        },
+        {
+            id: 6,
+            imageSRC: s,
+            status: 'I am a tasya\'s kent)',
+            followed: false,
+            fullName: 'Baimusin Danial',
+            country: 'Kazakhstan',
+            city: 'Almaty',
+            background: 'brown',
+            age: 17
+        },
+        {
+            id: 7,
+            imageSRC: s,
+            status: 'I am a tasya\'s kent)',
+            followed: false,
+            fullName: 'Kurkebaev Sanjar',
+            country: 'Kazakhstan',
+            city: 'Nur-Sultan',
+            background: 'aqua',
+            age: 16
+        },
+        {
+            id: 8,
+            imageSRC: s,
+            status: 'I am a tasya\'s kent)',
+            followed: false,
+            fullName: 'Egor Mazur',
+            country: 'Kazakhstan',
+            city: 'Pavlodar',
+            background: 'indigo',
+            age: 17
+        },
+        {
+            id: 9,
+            imageSRC: s,
+            status: 'I am a tasya\'s kent)',
+            followed: false,
+            fullName: 'Kapken Dariga',
+            country: 'Kazakhstan',
+            city: 'Almaty',
+            background: 'black',
+            age: 17
         },
     ]
 }

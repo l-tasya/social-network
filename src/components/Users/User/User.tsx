@@ -10,6 +10,8 @@ type UserPropsType = {
     userID: number
     country: string
     city: string
+    background: string
+    age: number
 }
 
 export const User: React.FC<UserPropsType> = (props) => {
@@ -17,7 +19,7 @@ export const User: React.FC<UserPropsType> = (props) => {
     let stylesForFollowButton = {
         color: 'white',
         minWidth: '120px',
-        background: props.followed? 'firebrick':'#10d876',
+        background: props.followed ? '#adb5bd' : '#1e74fd',
         padding: '14px',
         maxHeight: '50px',
         borderRadius: '0.3rem',
@@ -25,7 +27,15 @@ export const User: React.FC<UserPropsType> = (props) => {
         fontFamily: 'Montserrat, sans-serif',
         fontSize: '10px'
     }
+    let stylesForBackground = {
+        background: props.background,
+        color: props.background,
+    }
     return <div className={s.users}>
+        <div className={s.users__background}>
+            <div className={s.users__backgroundChildren} style={stylesForBackground}>s</div>
+        </div>
+
         <div className={s.users__first}>
             <img src={props.userIMG} className={s.users__img} alt=""/>
             <button
@@ -37,10 +47,10 @@ export const User: React.FC<UserPropsType> = (props) => {
                 }
             </button>
         </div>
-        <div>
-            <div className={s.users__name}>{props.userName}</div>
-                <div className={s.users__location}>Location: {props.country}, {props.city}</div>
-            <div className={s.users__status}>Status: {props.userStatus}</div>
+        <div className={s.users__second}>
+            <div className={s.users__name}>{props.userName}</div><span className={s.users__location}>Age: {props.age} y.o.</span>
+            <div className={s.users__location}>Location: {props.country}, {props.city}</div>
+
         </div>
 
     </div>

@@ -11,6 +11,7 @@ export type MessageType = {
     id: number
     message: string
     sent: boolean
+    time: string
 }
 export type MessagesType = Array<MessageType>
 
@@ -33,12 +34,12 @@ let initialState: DialogsPageType = {
         {id: '@Alina', name: 'Alina'},
     ],
     messages: [
-        {id: 1, sent: true, message: 'Hi!'},
-        {id: 2, sent: false, message: 'Hi!'},
-        {id: 3, sent: true, message: 'How do you feel'},
-        {id: 4, sent: false, message: 'I feel Incredibly good'},
-        {id: 5, sent: true, message: 'Ok, bye'},
-        {id: 6, sent: false, message: 'Bye'},
+        {id: 1, sent: true, message: 'Hi!', time: '12:23'},
+        {id: 2, sent: false, message: 'Hi!', time: '12:23'},
+        {id: 3, sent: true, message: 'How do you feel', time: '12:23'},
+        {id: 4, sent: false, message: 'I feel Incredibly good', time: '12:23'},
+        {id: 5, sent: true, message: 'Ok, bye', time: '12:23'},
+        {id: 6, sent: false, message: 'Bye', time: '12:23'},
     ],
     newMessageText: '',
     error: null,
@@ -46,11 +47,14 @@ let initialState: DialogsPageType = {
 
 export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType):DialogsPageType  =>{
     if (action.type === 'SEND-MESSAGE') {
+        let currentTime = new Date()
         if(state.newMessageText.trim() !== ''){
         let newMessage: MessageType = {
             id: state.messages.length !== 0 ? state.messages[state.messages.length - 1].id + 1 : 1,
             sent: true,
-            message: state.newMessageText.trim()
+            message: state.newMessageText.trim(),
+            time: currentTime.toLocaleTimeString().slice(0, 5),
+
         }
         state.error = null
         state.messages.push(newMessage)

@@ -45,21 +45,7 @@
     height: 400px;
     margin-left: 5px;
   }
-  .message{
-    display: inline-block;
-    background: #E6EEFF;
-    margin-bottom: 15px;
-    color: black;
-    font-size: 13px;
-    padding: 14px;
-    font-weight: 500;
-    border-radius: 10px;
-    align-self: flex-start;
-  }
-  .senDED{
-    background: #1e74fd;
-    align-self: flex-end;
-  }
+
   &__input{
     font-size: 13px;
     background: #E6EEFF;
