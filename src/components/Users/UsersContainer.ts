@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import { Users } from './Users';
 import {AppStateType} from '../../redux/redux-store';
 import { Dispatch } from 'redux';
-import {toggleFollowAC, UserType} from '../../redux/user-reducer';
+import {setUsersAC, toggleFollowAC, UserType} from '../../redux/user-reducer';
 
 type MapStatePropsType = {
     users: UserType[]
@@ -15,15 +15,20 @@ const mapStateToProps = (state: AppStateType):MapStatePropsType =>{
 }
 type MapDispatchPropsType = {
     toggleFollow: (userID: number)=>void
+    setUsers: (users: Array<UserType>)=>void
 }
 
 const mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType =>{
     const toggleFollow = (userID: number) =>{
         dispatch(toggleFollowAC(userID))
     }
+    const setUsers = (user: UserType[]) =>{
+        dispatch(setUsersAC(user))
+    }
 
     return {
         toggleFollow,
+        setUsers,
     }
 }
 
