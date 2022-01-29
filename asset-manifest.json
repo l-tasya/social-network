@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/social-network/static/css/main.0f0d1f99.chunk.css",
-    "main.js": "/social-network/static/js/main.3f4a04f6.chunk.js",
-    "main.js.map": "/social-network/static/js/main.3f4a04f6.chunk.js.map",
-    "runtime-main.js": "/social-network/static/js/runtime-main.c16fc0bd.js",
-    "runtime-main.js.map": "/social-network/static/js/runtime-main.c16fc0bd.js.map",
-    "static/js/2.5a9ae35e.chunk.js": "/social-network/static/js/2.5a9ae35e.chunk.js",
-    "static/js/2.5a9ae35e.chunk.js.map": "/social-network/static/js/2.5a9ae35e.chunk.js.map",
-    "static/js/3.d3334ed5.chunk.js": "/social-network/static/js/3.d3334ed5.chunk.js",
-    "static/js/3.d3334ed5.chunk.js.map": "/social-network/static/js/3.d3334ed5.chunk.js.map",
+    "main.css": "/social-network/static/css/main.724c3bae.chunk.css",
+    "main.js": "/social-network/static/js/main.3c46e74a.chunk.js",
+    "main.js.map": "/social-network/static/js/main.3c46e74a.chunk.js.map",
+    "runtime-main.js": "/social-network/static/js/runtime-main.daad0e4c.js",
+    "runtime-main.js.map": "/social-network/static/js/runtime-main.daad0e4c.js.map",
+    "static/js/2.7fafda34.chunk.js": "/social-network/static/js/2.7fafda34.chunk.js",
+    "static/js/2.7fafda34.chunk.js.map": "/social-network/static/js/2.7fafda34.chunk.js.map",
+    "static/js/3.56a8ac66.chunk.js": "/social-network/static/js/3.56a8ac66.chunk.js",
+    "static/js/3.56a8ac66.chunk.js.map": "/social-network/static/js/3.56a8ac66.chunk.js.map",
     "index.html": "/social-network/index.html",
-    "static/css/main.0f0d1f99.chunk.css.map": "/social-network/static/css/main.0f0d1f99.chunk.css.map",
-    "static/js/2.5a9ae35e.chunk.js.LICENSE.txt": "/social-network/static/js/2.5a9ae35e.chunk.js.LICENSE.txt",
+    "static/css/main.724c3bae.chunk.css.map": "/social-network/static/css/main.724c3bae.chunk.css.map",
+    "static/js/2.7fafda34.chunk.js.LICENSE.txt": "/social-network/static/js/2.7fafda34.chunk.js.LICENSE.txt",
     "static/media/JOJO.5dc27e80.png": "/social-network/static/media/JOJO.5dc27e80.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.c16fc0bd.js",
-    "static/js/2.5a9ae35e.chunk.js",
-    "static/css/main.0f0d1f99.chunk.css",
-    "static/js/main.3f4a04f6.chunk.js"
+    "static/js/runtime-main.daad0e4c.js",
+    "static/js/2.7fafda34.chunk.js",
+    "static/css/main.724c3bae.chunk.css",
+    "static/js/main.3c46e74a.chunk.js"
   ]
 }
