@@ -6,7 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import Music from './components/Music/Music';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
-import {ReduxStoreType} from './redux/redux-store';
+import {ReduxStoreType} from './redux/store/redux-store';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NewsContainer from './components/News/NewsContainer';
 import { UsersContainer } from './components/Users/UsersContainer';

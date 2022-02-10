@@ -6,7 +6,7 @@ import {
     MessagesType,
     sendMessageAC
 } from '../../redux/dialogs-reducer';
-import {AppStateType} from '../../redux/redux-store';
+import {AppStateType} from '../../redux/store/redux-store';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
