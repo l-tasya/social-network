@@ -1,4 +1,4 @@
-import {ActionsType} from './redux-store';
+import {ActionsType} from './store/redux-store';
 
 
 export type DialogType = {
@@ -53,7 +53,7 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
             id: state.messages.length !== 0 ? state.messages[state.messages.length - 1].id + 1 : 1,
             sent: true,
             message: state.newMessageText.trim(),
-            time: currentTime.toLocaleTimeString().slice(0, 5),
+            time: currentTime.toLocaleTimeString().slice(0, 4),
 
         }
         state.error = null

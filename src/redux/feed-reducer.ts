@@ -1,17 +1,7 @@
 import {UserInfoType} from './profile-reducer';
-import {ActionsType} from './redux-store';
-import {firstSrc, secondSrc} from './state';
+import {ActionsType} from './store/redux-store';
+import {firstSrc, secondSrc} from './store/state';
 
-export type FeedStoryType = {
-    user: {
-        name: string
-        surname: string
-        imageSRC: string
-    },
-    story: any,
-    id: number
-}
-export type FeedStoriesType = Array<FeedStoryType>
 
 export type FeedPostType = {
     id: number
@@ -22,7 +12,6 @@ export type FeedPostsType = Array<FeedPostType>
 
 export type NewsPageType = {
     userInfo: UserInfoType
-    feedStories: FeedStoriesType
     feedNewPostText: string
     feedPosts: FeedPostsType
 }
@@ -34,27 +23,6 @@ let initialState: NewsPageType = {
         surname: 'Nursain',
         eMail: 'dalionfull@gmail.com'
     },
-
-    feedStories: [
-        {
-            user: {
-                imageSRC: 'avatar',
-                name: 'Tasya',
-                surname: 'Tasya'
-            },
-            id: 1,
-            story: 'brown'
-        },
-        {
-            user: {
-                imageSRC: 'avatar',
-                name: 'User',
-                surname: 'Padj'
-            },
-            id: 2,
-            story: 'cornflowerblue'
-        },
-    ],
     feedNewPostText: '',
     feedPosts: [
         {id: 1, src: secondSrc, message: 'LALALA'}

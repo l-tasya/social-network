@@ -1,4 +1,4 @@
-import {ActionsType} from './redux-store';
+import {ActionsType} from './store/redux-store';
 
 export let firstSrc = 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
 export let secondSrc = 'https://static.turbosquid.com/Preview/001325/881/YD/_600.jpg';
