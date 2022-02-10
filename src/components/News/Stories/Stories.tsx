@@ -1,16 +1,23 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import s from './Stories.module.scss'
-import {FeedStoriesType} from '../../../redux/feed-reducer';
-import { Story } from './Story/Story';
+import {Story} from './Story/Story';
+import {UserType} from "../../../redux/user-reducer";
+import axios from 'axios';
 
 type StoriesPropsType = {
-    feedStories: FeedStoriesType
+    users: UserType[]
+    setUsers: (users: UserType[])=>void
 }
 
 export const Stories: React.FC<StoriesPropsType> = (props)=>{
+    useEffect(()=>{
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then((data)=>props.setUsers(data.data.items))
+    }, [])
+
     return <div className={s.body}>
     <div className={s.stories}>
-        {props.feedStories.map(f=><Story key={f.id} story={f}/>)}
+        {props.users.map(u=><Story user={u}/>)}
     </div>
     </div>
 }

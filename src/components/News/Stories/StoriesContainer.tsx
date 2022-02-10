@@ -1,24 +1,27 @@
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import {Stories} from './Stories';
-import {AppStateType} from '../../../redux/redux-store';
-import {FeedStoriesType} from '../../../redux/feed-reducer';
+import {AppStateType} from '../../../redux/store/redux-store';
 import {Dispatch} from 'redux';
+import {setUsersAC, UserType} from "../../../redux/user-reducer";
+
 
 type MapStatePropsType = {
-    feedStories: FeedStoriesType
+    users: UserType[]
 }
 
 let mapStateToProps = (state: AppStateType):MapStatePropsType => {
     return {
-        feedStories: state.newsPage.feedStories
+        users: state.usersPage.users
     }
 }
 type MapDispatchPropsType = {
-
+    setUsers: (users: UserType[])=>void
 }
 let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
     return {
-
+        setUsers: (users: UserType[])=>{
+            dispatch(setUsersAC(users))
+        }
     }
 }
 

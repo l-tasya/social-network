@@ -1,20 +1,16 @@
 import React from 'react'
-import {FeedStoryType} from '../../../../redux/feed-reducer'
 import s from './Story.module.scss'
+import {UserType} from "../../../../redux/user-reducer";
+import img from '../../../../img/JOJO.png'
+
 
 type StoryPropsType = {
-    story: FeedStoryType
+    user: UserType
 }
 
-export const Story: React.FC<StoryPropsType> = ({story})=>{
-    let storyStyles = {
-       background: `${story.story}`
-    }
-
-    return <div className={s.story} style={storyStyles}>
-        <div className={s.user}>
-            <img className={s.user__image} src={story.user.imageSRC} alt=""/>
-            <div className={s.user__name}>{story.user.name}</div>
-        </div>
+export const Story: React.FC<StoryPropsType> = ({user}) => {
+    return <div className={s.story}>
+        <img className={ s.story__img} src={user.photos.large? user.photos.large:img } alt=""/>
+        <div className={s.story__name}>{user.name.split(' ')[0]}</div>
     </div>
 }

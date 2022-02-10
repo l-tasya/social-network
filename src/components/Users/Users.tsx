@@ -11,13 +11,10 @@ type UsersPropsType = {
 }
 
 export const Users: React.FC<UsersPropsType> = ({users, toggleFollow, setUsers}) => {
-    useEffect(() => {
+    useEffect(()=>{
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => {
-                setUsers(response.data.items)
-            })
-        }, [])
-
+            .then((response)=>setUsers(response.data.items))
+    }, [])
     return <div className={s.users}>
         {users.map(u => <User key={u.id}
                               toggleFollow={toggleFollow}
