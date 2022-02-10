@@ -1,4 +1,4 @@
-import {ActionsType} from './redux-store'
+import {ActionsType} from './store/redux-store'
 
 
 export type UserType = {
@@ -32,7 +32,7 @@ let initialState: UserPageType = {
             id: 2,
             status: 'I am a tasya\'s kent, and childhood best friend)',
             followed: false,
-            name: 'Ermekov Sanjar',
+            name: 'Sanjar Ermekov ',
             photos: {
                 small: null,
                 large: null
@@ -42,7 +42,7 @@ let initialState: UserPageType = {
             id: 3,
             status: 'I am a tasya\'s kent, and childhood best friend)',
             followed: false,
-            name: 'Bekzat Sultan',
+            name: 'Sultan Bekzat ',
             photos: {
                 small: null,
                 large: null
@@ -52,7 +52,7 @@ let initialState: UserPageType = {
             id: 4,
             status: 'I am a tasya\'s kent, and childhood best friend)',
             followed: false,
-            name: 'Baimusin Danial',
+            name: 'Danial Baimusin ',
             photos: {
                 small: null,
                 large: null
