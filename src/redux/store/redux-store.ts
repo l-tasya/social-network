@@ -1,8 +1,8 @@
 import {combineReducers, createStore} from 'redux';
-import {addPostAC, profileInputChangeAC, profileReducer} from './profile-reducer';
-import {addFeedPostAC, feedInputChangeAC, feedReducer} from './feed-reducer';
-import {dialogInputChangeAC, dialogsReducer, fakeDialogsAC, sendMessageAC} from './dialogs-reducer';
-import {setUsersAC, toggleFollowAC, userReducer} from './user-reducer';
+import {addPostAC, profileInputChangeAC, profileReducer} from '../profile-reducer';
+import {addFeedPostAC, feedInputChangeAC, feedReducer} from '../feed-reducer';
+import {dialogInputChangeAC, dialogsReducer, fakeDialogsAC, sendMessageAC} from '../dialogs-reducer';
+import {setUsersAC, toggleFollowAC, userReducer} from '../user-reducer';
 
 export type ActionsType =
     ReturnType<typeof addPostAC>
@@ -24,6 +24,7 @@ let reducers = combineReducers({
 })
 
 let store = createStore(reducers);
+console.log(store.getState())
 export type ReduxStoreType = typeof store
 export type AppStateType = ReturnType<typeof reducers>
 export default store

@@ -1,6 +1,6 @@
-import {ProfilePageType, profileReducer} from './profile-reducer';
-import {DialogsPageType, dialogsReducer} from './dialogs-reducer';
-import {feedReducer, NewsPageType} from './feed-reducer';
+import {ProfilePageType, profileReducer} from '../profile-reducer';
+import {DialogsPageType, dialogsReducer} from '../dialogs-reducer';
+import {feedReducer, NewsPageType} from '../feed-reducer';
 import {ActionsType} from './redux-store';
 
 export let firstSrc = 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
@@ -73,7 +73,6 @@ const store: StoreType = {
                 surname: 'Nursain',
                 eMail: 'dalionfull@gmail.com'
             },
-            feedStories: [],
             feedNewPostText: '',
             feedPosts: [
                 {id: 1, src: secondSrc, message: 'LALALA'}
@@ -102,5 +101,4 @@ const store: StoreType = {
 
     }
 }
-console.log(store)
 /*---------------------------STORE---------------------------*/
