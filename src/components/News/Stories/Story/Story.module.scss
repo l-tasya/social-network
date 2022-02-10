@@ -1,12 +1,29 @@
+$storyHeight: 200px;
+$storyWidth: 120px;
+$imgWidth: $storyWidth/2.2;
+
 .story{
-  height: 200px;
+  height: $storyHeight;
   margin: 5px;
   border-radius: 15px;
-  width: 110px;
+  width: $storyWidth;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  background: #1e74fd;
+  &__img{
+    width: $imgWidth;
+    height: $imgWidth;
+    border-radius: 50%;
+    margin-bottom: $imgWidth - $imgWidth/2 - 20px;
+    border: 1px solid white;
+  }
+  &__name{
+    font-size: 15px;
+    color: #e6eeff;
+    padding: 10px;
+  }
 }
 .user{
 
