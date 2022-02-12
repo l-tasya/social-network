@@ -14,50 +14,53 @@ export type UserType = {
 
 export type UserPageType = {
     users: UserType[]
+    pageSize: number
+    totalUsers: number
+    currentPage: number
 }
 
 let initialState: UserPageType = {
     users: [
-        {
-            id: 1,
-            status: 'I am a tasya\'s kent, and childhood best friend)',
-            followed: false,
-            name: 'Rakhat Sovet',
-            photos: {
-                small: null,
-                large: null
-            }
-        },
-        {
-            id: 2,
-            status: 'I am a tasya\'s kent, and childhood best friend)',
-            followed: false,
-            name: 'Sanjar Ermekov ',
-            photos: {
-                small: null,
-                large: null
-            }
-        },
-        {
-            id: 3,
-            status: 'I am a tasya\'s kent, and childhood best friend)',
-            followed: false,
-            name: 'Sultan Bekzat ',
-            photos: {
-                small: null,
-                large: null
-            }
-        },
-        {
-            id: 4,
-            status: 'I am a tasya\'s kent, and childhood best friend)',
-            followed: false,
-            name: 'Danial Baimusin ',
-            photos: {
-                small: null,
-                large: null
-            }
-        },
+        // {
+        //     id: 1,
+        //     status: 'I am a tasya\'s kent, and childhood best friend)',
+        //     followed: false,
+        //     name: 'Rakhat Sovet',
+        //     photos: {
+        //         small: null,
+        //         large: null
+        //     }
+        // },
+        // {
+        //     id: 2,
+        //     status: 'I am a tasya\'s kent, and childhood best friend)',
+        //     followed: false,
+        //     name: 'Sanjar Ermekov ',
+        //     photos: {
+        //         small: null,
+        //         large: null
+        //     }
+        // },
+        // {
+        //     id: 3,
+        //     status: 'I am a tasya\'s kent, and childhood best friend)',
+        //     followed: false,
+        //     name: 'Sultan Bekzat ',
+        //     photos: {
+        //         small: null,
+        //         large: null
+        //     }
+        // },
+        // {
+        //     id: 4,
+        //     status: 'I am a tasya\'s kent, and childhood best friend)',
+        //     followed: false,
+        //     name: 'Danial Baimusin ',
+        //     photos: {
+        //         small: null,
+        //         large: null
+        //     }
+        // },
         // {
         //     id: 2,
         //     imageSRC: s,
@@ -146,7 +149,10 @@ let initialState: UserPageType = {
         //     background: 'black',
         //     age: 17
         // },
-    ]
+    ],
+    pageSize: 4,
+    totalUsers: 0,
+    currentPage: 2
 }
 
 export const userReducer = (state: UserPageType = initialState, action: ActionsType) => {
@@ -163,9 +169,20 @@ export const userReducer = (state: UserPageType = initialState, action: ActionsT
         case 'SET-USERS':
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: [ ...action.users]
             }
-
+        case "CHANGE-CURRENT-PAGE":{
+            return {
+                ...state,
+                currentPage: action.newValue
+            }
+        }
+        case "CHANGE-TOTAL-USERS":{
+            return {
+                ...state,
+                totalUsers: action.newValue
+            }
+        }
         default:
             return state
     }
@@ -182,5 +199,17 @@ export let setUsersAC = (users: UserType[]) => {
     return {
         type: 'SET-USERS',
         users: users
+    } as const
+}
+export let changeCurrentPageAC = (newValue: number) => {
+    return {
+        type: 'CHANGE-CURRENT-PAGE',
+        newValue: newValue,
+    } as const
+}
+export let changeTotalUserAC = (newValue: number) =>{
+    return {
+        type: 'CHANGE-TOTAL-USERS',
+        newValue,
     } as const
 }

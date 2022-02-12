@@ -1,4 +1,25 @@
 .users{
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  &__pages{
+    border-bottom: 3px solid #1ea7fd;
+    border-radius: 0.3rem;
+    margin: 1px 100px 20px 100px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    span{
+      margin: 0 10px;
+      font-weight:500;
+      &:hover{
+        color: #888888;
+      }
+    }
+  }
+  &__users{
+
+  }
+}
+.currentPage{
+  color: #1e74fd;
 }
