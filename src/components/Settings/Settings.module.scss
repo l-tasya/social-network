@@ -1,0 +1,26 @@
+@import '../../globals';
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  @extend %web-block;
+  font-size: 15px;
+  color: black;
+  height: 300px;
+
+  &__switch {
+
+  }
+
+  &__select {
+    width: 150px;
+    margin-left: 20px;
+    font-size: 14px;
+    height: 20px;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+  }
+}
