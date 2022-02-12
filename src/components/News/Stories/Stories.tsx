@@ -9,15 +9,15 @@ type StoriesPropsType = {
     setUsers: (users: UserType[])=>void
 }
 
-export const Stories: React.FC<StoriesPropsType> = (props)=>{
+export const Stories: React.FC<StoriesPropsType> = ({setUsers, users})=>{
     useEffect(()=>{
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then((data)=>props.setUsers(data.data.items))
-    }, [])
+            .then((data)=>setUsers(data.data.items))
+    }, [setUsers])
 
     return <div className={s.body}>
     <div className={s.stories}>
-        {props.users.map(u=><Story user={u}/>)}
+        {users.map(u=><Story user={u}/>)}
     </div>
     </div>
 }
