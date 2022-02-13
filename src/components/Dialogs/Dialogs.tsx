@@ -4,6 +4,7 @@ import Message from './Message/Message';
 import DialogsItem from './DialogsItem/DialogsItem';
 import {ArrowRight, MessageCircle} from 'react-feather';
 import {DialogsType, MessagesType} from '../../redux/dialogs-reducer';
+import {MessageSent} from "./MessageSent";
 
 type DialogsPropsType = {
     dialogItems: DialogsType
@@ -11,19 +12,26 @@ type DialogsPropsType = {
     onDialogItemClick: () => void
     newMessageText: string
     error: string | null
-    onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
-    onEnterKeyPress: (e: React.KeyboardEvent) => void
+    onInputChange: (newValue: string) => void
     onSentButtonClick: () => void
 }
 
 
-const Dialogs: React.FC<DialogsPropsType> = (props) => {
+const Dialogs: React.FC<DialogsPropsType> = ({
+                                                 dialogItems,
+                                                 dialogMessages,
+                                                 onDialogItemClick,
+                                                 newMessageText,
+                                                 error,
+                                                 onInputChange,
+                                                 onSentButtonClick
+                                             }) => {
 
     //converting state to component
-    let dialogElements = props.dialogItems.map((t) => <DialogsItem onDialogItemClick={props.onDialogItemClick}
-                                                                   key={t.id} name={t.name} id={t.id}/>)
-    let messageElements = props.dialogMessages.map((t) => <Message time={t.time} sent={t.sent} key={t.id}
-                                                                   text={t.message}/>)
+    let dialogElements = dialogItems.map((t) => <DialogsItem onDialogItemClick={onDialogItemClick}
+                                                             key={t.id} name={t.name} id={t.id}/>)
+    let messageElements = dialogMessages.map((t) => <Message time={t.time} sent={t.sent} key={t.id}
+                                                             text={t.message}/>)
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs__items}>
@@ -33,13 +41,9 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             <div className={s.dialogs__messages}>
 
                 {messageElements}
-                <div className={s.dialogs__typing}><input value={props.newMessageText}
-                                                          className={(props.error && s.errorInput) + ' ' + s.dialogs__input}
-                                                          type="text"
-                                                          placeholder={'Start typing..'}
-                                                          onChange={props.onInputChange}
-                                                          onKeyPress={props.onEnterKeyPress}/><span
-                    className={s.dialogs__send}><ArrowRight onClick={props.onSentButtonClick}/></span></div>
+                <div className={s.dialogs__typing}><MessageSent newMessageText={newMessageText}
+                                                                error={error} onInputChange={onInputChange}
+                                                                onSentButtonClick={onSentButtonClick}/></div>
             </div>
         </div>
     )

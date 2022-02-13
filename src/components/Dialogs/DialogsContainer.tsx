@@ -28,30 +28,33 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
         dialogMessages: state.dialogsPage.messages
     }
 }
-type MapDispatchPropsType = {
-    onSentButtonClick: () => void
-    onEnterKeyPress: (e: React.KeyboardEvent) => void
-    onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
-    onDialogItemClick: () => void
-}
-let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-    return {
-        onSentButtonClick: () => {
-            dispatch(sendMessageAC())
-        },
-        onEnterKeyPress: (e: React.KeyboardEvent) => {
-            e.key === 'Enter' && dispatch(sendMessageAC())
-        },
-        onInputChange: (e: ChangeEvent<HTMLInputElement>) => {
-            dispatch(dialogInputChangeAC(`${e.currentTarget.value}`))
-        },
-        onDialogItemClick: () => {
-            dispatch(fakeDialogsAC())
-        }
-    }
-}
+// type MapDispatchPropsType = {
+//     onSentButtonClick: () => void
+//     onInputChange: (newValue: string) => void
+//     onDialogItemClick: () => void
+// }
+// let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+//     return {
+//         onSentButtonClick: () => {
+//             dispatch(sendMessageAC())
+//         },
+//         onInputChange: (e: ChangeEvent<HTMLInputElement>) => {
+//             dispatch(dialogInputChangeAC(`${e.currentTarget.value}`))
+//         },
+//         onDialogItemClick: () => {
+//             dispatch(fakeDialogsAC())
+//         }
+//     }
+// }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+const DialogsContainer = connect(
+    mapStateToProps,
+    {
+        onSentButtonClick: sendMessageAC,
+        onInputChange: dialogInputChangeAC,
+        onDialogItemClick: fakeDialogsAC
+    }
+)(Dialogs)
 
 export default DialogsContainer
 

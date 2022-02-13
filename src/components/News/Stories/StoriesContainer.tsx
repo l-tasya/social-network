@@ -29,15 +29,20 @@ let mapStateToProps = (state: AppStateType):MapStatePropsType => {
         users: state.usersPage.users
     }
 }
-type MapDispatchPropsType = {
-    setUsers: (users: UserType[])=>void
-}
-let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
-    return {
-        setUsers: (users: UserType[])=>{
-            dispatch(setUsersAC(users))
-        }
-    }
-}
+// type MapDispatchPropsType = {
+//     setUsers: (users: UserType[])=>void
+// }
+// let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
+//     return {
+//         setUsers: (users: UserType[])=>{
+//             dispatch(setUsersAC(users))
+//         }
+//     }
+// }
 
-export const StoriesContainer = connect(mapStateToProps, mapDispatchToProps)(StoriesAPI)
+export const StoriesContainer = connect(
+    mapStateToProps,
+    {
+        setUsers: setUsersAC
+    }
+)(StoriesAPI)
