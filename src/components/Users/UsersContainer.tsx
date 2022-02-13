@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux';
 import {Users} from './Users';
 import {AppStateType} from '../../redux/store/redux-store';
-import {Dispatch} from 'redux';
 import {
     changeCurrentPageAC,
     changeTotalUserAC,
@@ -112,10 +111,10 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 export const UsersContainer = connect(
     mapStateToProps,
     {
-         toggleFollow: toggleFollowAC,
-         setUsers: setUsersAC,
-         changeCurrentPage: changeCurrentPageAC,
-         changeTotalUsers: changeTotalUserAC,
-         toggleIsFetching: toggleIsFetchingAC,
+        toggleFollow: toggleFollowAC,
+        setUsers: setUsersAC,
+        changeCurrentPage: changeCurrentPageAC,
+        changeTotalUsers: changeTotalUserAC,
+        toggleIsFetching: toggleIsFetchingAC,
     }
 )(UsersAPI)

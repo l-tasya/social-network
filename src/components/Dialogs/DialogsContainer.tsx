@@ -1,4 +1,3 @@
-import React, {ChangeEvent} from 'react';
 import {
     dialogInputChangeAC,
     DialogsType,
@@ -9,7 +8,6 @@ import {
 import {AppStateType} from '../../redux/store/redux-store';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
 
 
 type MapStatePropsType = {

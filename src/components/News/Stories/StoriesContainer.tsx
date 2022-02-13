@@ -1,7 +1,6 @@
 import {connect} from 'react-redux'
 import {Stories} from './Stories';
 import {AppStateType} from '../../../redux/store/redux-store';
-import {Dispatch} from 'redux';
 import {setUsersAC, UserType} from "../../../redux/user-reducer";
 import {useEffect} from "react";
 import axios from "axios";
@@ -11,7 +10,7 @@ type StoriesAPIType = {
     setUsers: (users: UserType[]) => void
 }
 
-const StoriesAPI: React.FC<StoriesAPIType> = ({setUsers, users}) =>{
+const StoriesAPI: React.FC<StoriesAPIType> = ({setUsers, users}) => {
     useEffect(() => {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
             .then((data) => setUsers(data.data.items))
@@ -24,7 +23,7 @@ type MapStatePropsType = {
     users: UserType[]
 }
 
-let mapStateToProps = (state: AppStateType):MapStatePropsType => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         users: state.usersPage.users
     }

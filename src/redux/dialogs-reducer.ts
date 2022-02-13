@@ -45,21 +45,21 @@ let initialState: DialogsPageType = {
     error: null,
 }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType):DialogsPageType  =>{
+export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType): DialogsPageType => {
     if (action.type === 'SEND-MESSAGE') {
         let currentTime = new Date()
-        if(state.newMessageText.trim() !== ''){
-        let newMessage: MessageType = {
-            id: state.messages.length !== 0 ? state.messages[state.messages.length - 1].id + 1 : 1,
-            sent: true,
-            message: state.newMessageText.trim(),
-            time: currentTime.toLocaleTimeString().slice(0, 4),
+        if (state.newMessageText.trim() !== '') {
+            let newMessage: MessageType = {
+                id: state.messages.length !== 0 ? state.messages[state.messages.length - 1].id + 1 : 1,
+                sent: true,
+                message: state.newMessageText.trim(),
+                time: currentTime.toLocaleTimeString().slice(0, 4),
 
+            }
+            state.error = null
+            state.messages.push(newMessage)
         }
-        state.error = null
-        state.messages.push(newMessage)
-        }
-        if(state.newMessageText.trim() === ''){
+        if (state.newMessageText.trim() === '') {
             state.error = 'required field'
         }
         state.newMessageText = ''

@@ -1,8 +1,8 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './Dialogs.module.scss';
 import Message from './Message/Message';
 import DialogsItem from './DialogsItem/DialogsItem';
-import {ArrowRight, MessageCircle} from 'react-feather';
+import {MessageCircle} from 'react-feather';
 import {DialogsType, MessagesType} from '../../redux/dialogs-reducer';
 import {MessageSent} from "./MessageSent";
 

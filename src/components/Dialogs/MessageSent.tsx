@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from "./Dialogs.module.scss";
 import {ArrowRight} from "react-feather";
 
