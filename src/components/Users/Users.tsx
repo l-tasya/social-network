@@ -30,11 +30,11 @@ export const Users: React.FC<UsersPropsType> = ({
     return <div className={s.users}>
         <div className={s.users__pages}>
             {
-                pages.map(p => {
+                pages.map((p, i) => {
                     const onClickHandler = () => {
                         changeCurrentPage(p)
                     }
-                    return <span onClick={onClickHandler} className={currentPage === p ? s.currentPage : ''}>{p}</span>
+                    return <span key={i} onClick={onClickHandler} className={currentPage === p ? s.currentPage : ''}>{p}</span>
                 })
             }
         </div>

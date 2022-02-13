@@ -3,9 +3,17 @@ import {connect} from 'react-redux';
 import {Users} from './Users';
 import {AppStateType} from '../../redux/store/redux-store';
 import {Dispatch} from 'redux';
-import {changeCurrentPageAC, changeTotalUserAC, setUsersAC, toggleFollowAC, UserType} from '../../redux/user-reducer';
+import {
+    changeCurrentPageAC,
+    changeTotalUserAC,
+    setUsersAC,
+    toggleFollowAC,
+    toggleIsFetchingAC,
+    UserType
+} from '../../redux/user-reducer';
 import {useEffect} from "react";
 import axios from "axios";
+import {Preloader} from '../common/Preloader/Preloader';
 
 
 type UsersAPIPropsType = {
@@ -14,9 +22,11 @@ type UsersAPIPropsType = {
     setUsers: (users: UserType[]) => void
     changeCurrentPage: (newValue: number) => void
     changeTotalUsers: (newValue: number) => void
+    toggleIsFetching: (newValue: boolean) => void
     totalUsers: number
     pageSize: number
     currentPage: number
+    isFetching: boolean
 }
 const UsersAPI: React.FC<UsersAPIPropsType> = ({
                                                    users,
@@ -27,16 +37,25 @@ const UsersAPI: React.FC<UsersAPIPropsType> = ({
                                                    currentPage,
                                                    changeTotalUsers,
                                                    setUsers,
+                                                   isFetching,
+                                                   toggleIsFetching
                                                }) => {
     useEffect(() => {
+        toggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
             .then((response) => {
                 setUsers(response.data.items)
+                toggleIsFetching(false)
                 changeTotalUsers(30)
             })
-    }, [currentPage, pageSize, setUsers, changeTotalUsers])
-    return  <div>
-        <Users users={users} currentPage={currentPage} changeCurrentPage={changeCurrentPage} pageSize={pageSize} toggleFollow={toggleFollow} totalUsers={totalUsers}/>
+    }, [currentPage, pageSize, setUsers, changeTotalUsers, toggleIsFetching])
+    return <div>
+        {isFetching ? <Preloader/> : null}
+        <Users users={users}
+               currentPage={currentPage}
+               changeCurrentPage={changeCurrentPage}
+               pageSize={pageSize}
+               toggleFollow={toggleFollow} totalUsers={totalUsers}/>
     </div>
 }
 
@@ -46,6 +65,7 @@ type MapStatePropsType = {
     pageSize: number
     totalUsers: number
     currentPage: number
+    isFetching: boolean
 }
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
@@ -53,7 +73,8 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsers: state.usersPage.totalUsers,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching,
     }
 }
 type MapDispatchPropsType = {
@@ -61,6 +82,7 @@ type MapDispatchPropsType = {
     setUsers: (users: Array<UserType>) => void
     changeCurrentPage: (newValue: number) => void
     changeTotalUsers: (newValue: number) => void
+    toggleIsFetching: (newValue: boolean) => void
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
@@ -76,12 +98,15 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     const changeTotalUsers = (newValue: number) => {
         dispatch(changeTotalUserAC(newValue))
     }
-
+    const toggleIsFetching = (newValue: boolean) => {
+        dispatch(toggleIsFetchingAC(newValue))
+    }
     return {
         toggleFollow,
         setUsers,
         changeCurrentPage,
-        changeTotalUsers
+        changeTotalUsers,
+        toggleIsFetching
     }
 }
 

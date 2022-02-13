@@ -2,7 +2,14 @@ import {combineReducers, createStore} from 'redux';
 import {addPostAC, profileInputChangeAC, profileReducer} from '../profile-reducer';
 import {addFeedPostAC, feedInputChangeAC, feedReducer} from '../feed-reducer';
 import {dialogInputChangeAC, dialogsReducer, fakeDialogsAC, sendMessageAC} from '../dialogs-reducer';
-import {changeCurrentPageAC, changeTotalUserAC, setUsersAC, toggleFollowAC, userReducer} from '../user-reducer';
+import {
+    changeCurrentPageAC,
+    changeTotalUserAC,
+    setUsersAC,
+    toggleFollowAC,
+    toggleIsFetchingAC,
+    userReducer
+} from '../user-reducer';
 
 export type ActionsType =
     ReturnType<typeof addPostAC>
@@ -16,6 +23,7 @@ export type ActionsType =
     | ReturnType<typeof setUsersAC>
     | ReturnType<typeof changeCurrentPageAC>
     | ReturnType<typeof changeTotalUserAC>
+    | ReturnType<typeof toggleIsFetchingAC>
 
 
 let reducers = combineReducers({
