@@ -7,7 +7,7 @@
   position: relative;
   padding: 0;
   &__img{
-    z-index: 199;
+
     background: white;
     min-width: 100px;
     height: 100px;
@@ -20,6 +20,9 @@
     font-size: 20px;
     color: black;
 
+  }
+  &__link{
+    z-index: 199;
   }
   &__location{
     margin: 10px 0 8px;

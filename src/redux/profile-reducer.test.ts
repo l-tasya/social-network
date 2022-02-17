@@ -2,17 +2,12 @@ import {addPostAC, profileInputChangeAC, ProfilePageType, profileReducer, second
 
 test('profileReducer should change newPostText', ()=>{
     const startState: ProfilePageType = {
-        userInfo: {
-            imageSRC: 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
-            name: 'Temirtas',
-            surname: 'Nursain',
-            eMail: 'dalionfull@gmail.com'
-        },
         post: [
             {id: 1, src: secondSrc, message: 'That is my wall?'},
 
         ],
         newPostText: '',
+        profile: null
     }
     let newText = 'JoJoJo'
     const endState = profileReducer(startState, profileInputChangeAC(newText))
@@ -20,17 +15,12 @@ test('profileReducer should change newPostText', ()=>{
 })
 test('profileReducer should add post', ()=>{
     const startState: ProfilePageType = {
-        userInfo: {
-            imageSRC: 'https://steamuserimages-a.akamaihd.net/ugc/97227892816512942/9D008E4EEFC6BFC6D3E283526BB6276393EA19F4/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
-            name: 'Temirtas',
-            surname: 'Nursain',
-            eMail: 'dalionfull@gmail.com'
-        },
         post: [
             {id: 1, src: secondSrc, message: 'That is my wall?'},
 
         ],
         newPostText: '',
+        profile: null
     }
     let newPostText = 'JOJOjO'
     //post input value change

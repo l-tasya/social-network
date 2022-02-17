@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './User.module.scss'
 import img from '../../../img/JOJO.png'
+import {NavLink} from "react-router-dom";
 
 type UserPropsType = {
     userIMG: string | null
@@ -34,7 +35,9 @@ export const User: React.FC<UserPropsType> = (props) => {
         </div>
 
         <div className={s.users__first}>
-            <img src={props.userIMG? props.userIMG: img} className={s.users__img} alt=""/>
+           <NavLink className={s.users__link} to={`/social-network/profile/${props.userID}`}>
+               <img src={props.userIMG? props.userIMG: img} className={s.users__img} alt=""/>
+           </NavLink>
             <button
                 onClick={() => props.toggleFollow(props.userID)}
                 style={stylesForFollowButton}

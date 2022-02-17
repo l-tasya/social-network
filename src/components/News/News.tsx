@@ -2,28 +2,37 @@ import React from 'react';
 import {PostTextArea} from '../common/PostTextArea/PostTextArea';
 import s from './News.module.scss';
 import Post from '../Profile/MyPosts/Post/Post';
-import {UserInfoType} from '../../redux/profile-reducer';
-import {FeedPostsType} from '../../redux/feed-reducer';
+import {ProfileUserType} from '../../redux/profile-reducer';
+import {addFeedPostAC, feedInputChangeAC, NewsPageType} from '../../redux/feed-reducer';
 import {StoriesContainer} from './Stories/StoriesContainer';
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "../../redux/store/redux-store";
 
-type NewsPropsType = {
-    feedNewPostText: string
-    onPostChange: (text: string)=>void
-    userInfo: UserInfoType
-    onItemAddClick: ()=>void
-    feedPost: FeedPostsType
-}
 
-const News: React.FC<NewsPropsType> = (props) => {
+const News: React.FC= () => {
+    //state
+    let newsPage = useSelector<AppStateType, NewsPageType>(state => state.newsPage)
+    let userInfo = useSelector<AppStateType, ProfileUserType | null>(state => state.profilePage.profile)
+    let feedNewPostText = newsPage.feedNewPostText
+    let feedPost = newsPage.feedPosts
+    //dispatch
+    const dispatch = useDispatch()
+
+    const onPostChange = (text: string) =>{
+        dispatch(feedInputChangeAC(text))
+    }
+    const onItemAddClick = () =>{
+        dispatch(addFeedPostAC(1))
+    }
     return (
         <div className={s.feed}>
             <StoriesContainer/>
-            <PostTextArea value={props.feedNewPostText}
-                          onChangeText={props.onPostChange}
-                          user={props.userInfo}
-                          addItem={props.onItemAddClick}/>
+            <PostTextArea value={feedNewPostText}
+                          onChangeText={onPostChange}
+                          user={userInfo}
+                          addItem={onItemAddClick}/>
             {
-                props.feedPost.map(t => <Post key={t.id} message={t.message} img={t.src} id={t.id}/>).reverse()
+                feedPost.map(t => <Post key={t.id} message={t.message} img={t.src} id={t.id}/>).reverse()
             }
         </div>
     )

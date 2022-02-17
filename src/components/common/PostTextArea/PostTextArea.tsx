@@ -1,14 +1,14 @@
 import React, {ChangeEvent, useState} from 'react';
 import s from './PostTextArea.module.scss'
 import {Plus} from 'react-feather';
-import { UserInfoType } from '../../../redux/profile-reducer';
+import {ProfileUserType} from '../../../redux/profile-reducer';
 
 
 type PostTextAreaPropsType = {
     value: string
-    addItem: ()=>void
-    onChangeText: (text: string)=>void
-    user: UserInfoType
+    addItem: () => void
+    onChangeText: (text: string) => void
+    user: ProfileUserType | null
 }
 
 export const PostTextArea: React.FC<PostTextAreaPropsType> = (props) => {
@@ -39,7 +39,7 @@ export const PostTextArea: React.FC<PostTextAreaPropsType> = (props) => {
     }
 
     let textAreaStyles = {
-        border: error?'2px solid lightcoral':'2px solid #F1F1F1'
+        border: error ? '2px solid lightcoral' : '2px solid #F1F1F1'
     }
     return (<div className={s.postADD}>
             <button className={s.postADD__sendButton} onClick={onAddPostButtonClick}>
@@ -49,7 +49,7 @@ export const PostTextArea: React.FC<PostTextAreaPropsType> = (props) => {
 
             <div className={s.postADD__inputArea}>
                 {error && <span className={s.postADD__spanERROR}>{error}</span>}
-                <img src={props.user.imageSRC} alt=""/>
+                <img src={props.user?.photos.small} alt=""/>
                 <textarea
                     className={s.textarea}
                     onChange={onChangeCallBack}
@@ -59,7 +59,7 @@ export const PostTextArea: React.FC<PostTextAreaPropsType> = (props) => {
                     rows={10}
                     value={props.value}
                     style={textAreaStyles}
-                    onBlur={()=>setError(null)}
+                    onBlur={() => setError(null)}
                 >
             </textarea>
 

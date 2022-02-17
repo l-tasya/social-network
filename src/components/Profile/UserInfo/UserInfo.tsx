@@ -1,15 +1,15 @@
 import React from 'react';
 import {Mail, MoreHorizontal} from 'react-feather';
-import { UserInfoType } from '../../../redux/profile-reducer';
 import s from './UserInfo.module.scss'
+import {useSelector} from "react-redux";
+import {AppStateType} from "../../../redux/store/redux-store";
+import {ProfileUserType} from "../../../redux/profile-reducer";
 
 
-type UserInfoPropsType = {
-    state: UserInfoType
-}
+type UserInfoPropsType = {}
 
-
-const UserInfo: React.FC<UserInfoPropsType> = (props) => {
+const UserInfo: React.FC<UserInfoPropsType> = () => {
+    let user = useSelector<AppStateType, ProfileUserType | null>(state => state.profilePage.profile)
     let backgroundImageStyle = {
         background: 'red'
     }
@@ -22,10 +22,10 @@ const UserInfo: React.FC<UserInfoPropsType> = (props) => {
             </div>
             <div className={s.userInfo__info}>
                 <span className={s.userInfo__about}>
-                    <img className={s.userInfo__ava} src={props.state.imageSRC} alt=''/>
+                    <img className={s.userInfo__ava} src={user?.photos.large} alt=''/>
                     <div>
-                        <div className={s.userInfo__title}>{props.state.name} {props.state.surname}</div>
-                        <div className={s.userInfo__subtitle}>{props.state.eMail}</div>
+                        <div className={s.userInfo__title}>{user?.fullName}</div>
+                        <div className={s.userInfo__subtitle}>{user?.contacts.mainLink}</div>
                     </div>
                 </span>
                 <div className={`${s.userInfo__buttons} ${s.buttons}`}>

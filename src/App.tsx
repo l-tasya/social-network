@@ -4,12 +4,12 @@ import {Header} from './components/Header/Header';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Music from './components/Music/Music';
-import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 import {ReduxStoreType} from './redux/store/redux-store';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import NewsContainer from './components/News/NewsContainer';
-import { UsersContainer } from './components/Users/UsersContainer';
+import {UsersContainer} from './components/Users/UsersContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
+import News from "./components/News/News";
+import Dialogs from './components/Dialogs/Dialogs';
 
 //types
 type AppPropsType = {
@@ -17,23 +17,23 @@ type AppPropsType = {
 }
 
 
-const App: React.FC<AppPropsType> = (props) => {
+const App: React.FC<AppPropsType> = () => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header title={'Social Network'}/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route render={() => <Profile store={props.store}/>} path='/social-network/profile'/>
+                    <Route render={() => <ProfileContainer/>} path='/social-network/profile'/>
 
 
-                    <Route render={() => <DialogsContainer/>} path='/social-network/dialogs'/>
+                    <Route render={() => <Dialogs/>} path='/social-network/dialogs'/>
 
 
                     <Route render={() => <UsersContainer/>} path='/social-network/users'/>
 
 
-                    <Route render={() => <NewsContainer/>} path='/social-network/feed'/>
+                    <Route render={() => <News/>} path='/social-network/feed'/>
 
 
                     <Route render={() => <Music/>} path='/social-network/audio'/>
