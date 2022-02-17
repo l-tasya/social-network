@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from 'redux';
-import {addPostAC, profileInputChangeAC, profileReducer} from '../profile-reducer';
+import {addPostAC, profileInputChangeAC, profileReducer, setUserProfileAC} from '../profile-reducer';
 import {addFeedPostAC, feedInputChangeAC, feedReducer} from '../feed-reducer';
 import {dialogInputChangeAC, dialogsReducer, fakeDialogsAC, sendMessageAC} from '../dialogs-reducer';
 import {
@@ -24,6 +24,7 @@ export type ActionsType =
     | ReturnType<typeof changeCurrentPageAC>
     | ReturnType<typeof changeTotalUserAC>
     | ReturnType<typeof toggleIsFetchingAC>
+    | ReturnType<typeof setUserProfileAC>
 
 
 let reducers = combineReducers({

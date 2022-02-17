@@ -56,19 +56,50 @@ let initialState: ProfilePageType = {
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
-    if (action.type === 'ADD-POST') {
-        let newPost: PostType = {
-            id: state.post[state.post.length - 1].id + 1,
-            src: action.src === 1 ? firstSrc : secondSrc,
-            message: state.newPostText,
+    // if (action.type === 'ADD-POST') {
+    //     let newPost: PostType = {
+    //         id: state.post[state.post.length - 1].id + 1,
+    //         src: action.src === 1 ? firstSrc : secondSrc,
+    //         message: state.newPostText,
+    //     }
+    //     state.post.push(newPost)
+    //     state.newPostText = ''
+    // }
+    // if (action.type === 'PROFILE-INPUT-CHANGE') {
+    //     state.newPostText = `${action.text}`
+    // }
+    // if
+    // return {...state}
+    switch (action.type) {
+        case "ADD-POST":{
+            let newPost: PostType = {
+                id: state.post[state.post.length - 1].id + 1,
+                src: action.src === 1 ? firstSrc : secondSrc,
+                message: state.newPostText,
+            }
+            return {
+                ...state,
+                post: [...state.post, newPost],
+                newPostText: '',
+            }
         }
-        state.post.push(newPost)
-        state.newPostText = ''
+        case "PROFILE-INPUT-CHANGE":{
+            return {
+                ...state,
+                newPostText: `${action.text}`
+            }
+        }
+        case 'SET-USER-PROFILE':
+            return {
+                ...state,
+                profile: action.user
+            }
+        default:{
+            return{
+                ...state
+            }
+        }
     }
-    if (action.type === 'PROFILE-INPUT-CHANGE') {
-        state.newPostText = `${action.text}`
-    }
-    return {...state}
 }/*----AC----*/
 export const addPostAC = (src: 1 | 2) => {
     return {
@@ -80,5 +111,11 @@ export const profileInputChangeAC = (text: string) => {
     return {
         type: 'PROFILE-INPUT-CHANGE',
         text: text,
+    } as const
+}
+export const setUserProfileAC = (user: ProfileUserType) => {
+    return {
+        type: 'SET-USER-PROFILE',
+        user,
     } as const
 }
