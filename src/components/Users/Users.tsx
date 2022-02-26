@@ -6,13 +6,13 @@ import s from './Users.module.scss'
 type UsersPropsType = {
     users: UserType[]
     toggleFollow: (userID: number) => void
-    changeCurrentPage: (newValue: number) =>void
+    changeCurrentPage: (newValue: number) => void
     totalUsers: number
     pageSize: number
     currentPage: number
 }
 
-export const Users: React.FC<UsersPropsType> = ({
+export const Users: React.FC<UsersPropsType> = React.memo(({
                                                     users,
                                                     toggleFollow,
                                                     pageSize,
@@ -20,7 +20,6 @@ export const Users: React.FC<UsersPropsType> = ({
                                                     changeCurrentPage,
                                                     currentPage
                                                 }) => {
-
     let pagesCount = Math.ceil(totalUsers / pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
@@ -34,7 +33,8 @@ export const Users: React.FC<UsersPropsType> = ({
                     const onClickHandler = () => {
                         changeCurrentPage(p)
                     }
-                    return <span key={i} onClick={onClickHandler} className={currentPage === p ? s.currentPage : ''}>{p}</span>
+                    return <span key={i} onClick={onClickHandler}
+                                 className={currentPage === p ? s.currentPage : ''}>{p}</span>
                 })
             }
         </div>
@@ -51,4 +51,4 @@ export const Users: React.FC<UsersPropsType> = ({
         </div>
 
     </div>
-}
+})

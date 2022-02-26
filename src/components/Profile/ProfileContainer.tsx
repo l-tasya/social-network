@@ -1,22 +1,29 @@
 import axios from "axios";
-import React, {useEffect} from "react";
+import React, {useCallback, useEffect} from "react";
 import Profile from "./Profile";
 import {useDispatch} from "react-redux";
 import {ProfileUserType, setUserProfileAC} from "../../redux/profile-reducer";
+import {withRouter} from "react-router-dom";
 //types
 
-
-const ProfileContainer = () => {
+type ProfileContainerType = {
+    match: any
+}
+const ProfileContainer: React.FC<ProfileContainerType> = (props) => {
     let dispatch = useDispatch()
-    const setProfileUser = (user: ProfileUserType) =>{
+    const setProfileUser = useCallback((user: ProfileUserType) => {
         dispatch(setUserProfileAC(user))
-    }
-    useEffect(()=>{
-        axios.get('https://social-network.samuraijs.com/api/1.0/profile/2')
-            .then(response =>{
+    },[])
+    useEffect(() => {
+        let userID = props.match.params.userID
+        if (!userID) {
+            userID = 2
+        }
+        axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + userID)
+            .then(response => {
                 setProfileUser(response.data)
             })
-    }, [setProfileUser])
+    }, [])
     return <Profile/>
 }
-export default ProfileContainer;
+export default withRouter(ProfileContainer);

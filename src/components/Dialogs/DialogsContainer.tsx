@@ -1,5 +1,4 @@
 import {
-    dialogInputChangeAC,
     DialogsType,
     fakeDialogsAC,
     MessagesType,
@@ -11,8 +10,6 @@ import {connect} from 'react-redux';
 
 
 type MapStatePropsType = {
-    error: null | string
-    newMessageText: string
     dialogItems: DialogsType
     dialogMessages: MessagesType
 
@@ -20,8 +17,6 @@ type MapStatePropsType = {
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        error: state.dialogsPage.error,
-        newMessageText: state.dialogsPage.newMessageText,
         dialogItems: state.dialogsPage.dialogs,
         dialogMessages: state.dialogsPage.messages
     }
@@ -49,7 +44,6 @@ const DialogsContainer = connect(
     mapStateToProps,
     {
         onSentButtonClick: sendMessageAC,
-        onInputChange: dialogInputChangeAC,
         onDialogItemClick: fakeDialogsAC
     }
 )(Dialogs)

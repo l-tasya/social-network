@@ -12,7 +12,6 @@ export type FeedPostsType = Array<FeedPostType>
 
 export type NewsPageType = {
     userInfo: UserInfoType
-    feedNewPostText: string
     feedPosts: FeedPostsType
 }
 
@@ -23,7 +22,6 @@ let initialState: NewsPageType = {
         surname: 'Nursain',
         eMail: 'dalionfull@gmail.com'
     },
-    feedNewPostText: '',
     feedPosts: [
         {id: 1, src: secondSrc, message: 'LALALA'}
     ],
@@ -33,28 +31,18 @@ export const feedReducer = (state: NewsPageType = initialState, action: ActionsT
     if (action.type === 'ADD-FEED-POST') {
         let newFeedPost: FeedPostType = {
             id: state.feedPosts[state.feedPosts.length - 1].id + 1,
-            message: state.feedNewPostText,
-            src: action.src === 1 ? firstSrc : secondSrc,
+            message: action.message,
+            src: firstSrc,
         }
         state.feedPosts.push(newFeedPost)
-        state.feedNewPostText = ''
 
-    }
-    if (action.type === 'FEED-INPUT-CHANGE') {
-        state.feedNewPostText = `${action.text}`
     }
     return {...state}
 }
-export const addFeedPostAC = (src: 1 | 2) => {
+export const addFeedPostAC = (message: string) => {
     return {
         type: 'ADD-FEED-POST',
-        src: src
+        message,
     } as const
-
-}
-export const feedInputChangeAC = (text: string) => {
-    return {
-        type: 'FEED-INPUT-CHANGE',
-        text: text
-    } as const
+    
 }

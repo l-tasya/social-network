@@ -1,39 +1,32 @@
 import {
     addPostAC,
-    profileInputChangeAC,
     ProfilePageType,
     profileReducer,
     ProfileUserType,
     secondSrc, setUserProfileAC
 } from './profile-reducer';
 
-test('profileReducer should change newPostText', ()=>{
-    const startState: ProfilePageType = {
-        post: [
-            {id: 1, src: secondSrc, message: 'That is my wall?'},
-
-        ],
-        newPostText: '',
-        profile: null
-    }
-    let newText = 'JoJoJo'
-    const endState = profileReducer(startState, profileInputChangeAC(newText))
-    expect(endState.newPostText).toBe(newText)
-})
 test('profileReducer should add post', ()=>{
     const startState: ProfilePageType = {
         post: [
             {id: 1, src: secondSrc, message: 'That is my wall?'},
 
         ],
-        newPostText: '',
-        profile: null
+        profile: {
+            photos: {
+                large: '',
+                small: '',
+            },
+            userId:2,
+            contacts: {mainLink: ''},
+            fullName: '',
+            lookingForAJob: true,
+        }
     }
     let newPostText = 'JOJOjO'
     //post input value change
-    let newStartState:ProfilePageType = profileReducer(startState, profileInputChangeAC(newPostText))
     //add post button click
-    const endState = profileReducer(newStartState, addPostAC(1))
+    const endState = profileReducer(startState, addPostAC(newPostText))
     expect(endState.post.length).toBe(2)
     expect(endState.post[1].message).toBe(newPostText)
 
@@ -44,8 +37,16 @@ test('profile reducer should set profileUser', ()=>{
             {id: 1, src: secondSrc, message: 'That is my wall?'},
 
         ],
-        newPostText: '',
-        profile: null
+        profile: {
+            photos: {
+                large: '',
+                small: '',
+            },
+            userId:2,
+            contacts: {mainLink: ''},
+            fullName: '',
+            lookingForAJob: true,
+        }
     }
     let user: ProfileUserType = {
         fullName: 'Temirtas Nursain',

@@ -24,7 +24,7 @@ const App: React.FC<AppPropsType> = () => {
                 <Header title={'Social Network'}/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route render={() => <ProfileContainer/>} path='/social-network/profile'/>
+                    <Route render={() => <ProfileContainer/>} path='/social-network/profile/:userID?'/>
 
 
                     <Route render={() => <Dialogs/>} path='/social-network/dialogs'/>

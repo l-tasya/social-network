@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux';
 import {Users} from './Users';
 import {AppStateType} from '../../redux/store/redux-store';
@@ -10,7 +10,6 @@ import {
     toggleIsFetchingAC,
     UserType
 } from '../../redux/user-reducer';
-import {useEffect} from "react";
 import axios from "axios";
 import {Preloader} from '../common/Preloader/Preloader';
 
@@ -45,7 +44,7 @@ const UsersAPI: React.FC<UsersAPIPropsType> = ({
             .then((response) => {
                 setUsers(response.data.items)
                 toggleIsFetching(false)
-                changeTotalUsers(30)
+                changeTotalUsers(50)
             })
     }, [currentPage, pageSize, setUsers, changeTotalUsers, toggleIsFetching])
     return <div>
@@ -76,38 +75,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         isFetching: state.usersPage.isFetching,
     }
 }
-// type MapDispatchPropsType = {
-//     toggleFollow: (userID: number) => void
-//     setUsers: (users: Array<UserType>) => void
-//     changeCurrentPage: (newValue: number) => void
-//     changeTotalUsers: (newValue: number) => void
-//     toggleIsFetching: (newValue: boolean) => void
-// }
-// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-//     const toggleFollow = (userID: number) => {
-//         dispatch(toggleFollowAC(userID))
-//     }
-//     const setUsers = (user: UserType[]) => {
-//         dispatch(setUsersAC(user))
-//     }
-//     const changeCurrentPage = (newValue: number) => {
-//         dispatch(changeCurrentPageAC(newValue))
-//     }
-//     const changeTotalUsers = (newValue: number) => {
-//         dispatch(changeTotalUserAC(newValue))
-//     }
-//     const toggleIsFetching = (newValue: boolean) => {
-//         dispatch(toggleIsFetchingAC(newValue))
-//     }
-//     return {
-//         toggleFollow,
-//         setUsers,
-//         changeCurrentPage,
-//         changeTotalUsers,
-//         toggleIsFetching
-//     }
-// }
-
 export const UsersContainer = connect(
     mapStateToProps,
     {

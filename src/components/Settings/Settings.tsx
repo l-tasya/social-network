@@ -5,7 +5,7 @@ import SwitchUnstyled, {switchUnstyledClasses} from '@mui/base/SwitchUnstyled';
 import Select, {SelectChangeEvent} from "@mui/material/Select";
 import {MenuItem} from "@mui/material";
 
-const Settings = () => {
+const Settings = React.memo(() => {
     const blue = {
         500: '#007FFF',
     };
@@ -101,6 +101,6 @@ const Settings = () => {
             </div>
         </div>
     );
-}
+})
 export default Settings
 

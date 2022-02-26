@@ -8,7 +8,7 @@ import {ProfileUserType} from "../../../redux/profile-reducer";
 
 type UserInfoPropsType = {}
 
-const UserInfo: React.FC<UserInfoPropsType> = () => {
+const UserInfo: React.FC<UserInfoPropsType> = React.memo(() => {
     let user = useSelector<AppStateType, ProfileUserType | null>(state => state.profilePage.profile)
     let backgroundImageStyle = {
         background: 'red'
@@ -36,5 +36,5 @@ const UserInfo: React.FC<UserInfoPropsType> = () => {
             </div>
         </div>
     )
-}
+})
 export default UserInfo;

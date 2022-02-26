@@ -1,30 +1,24 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import s from './Dialogs.module.scss';
 import Message from './Message/Message';
 import DialogsItem from './DialogsItem/DialogsItem';
 import {MessageCircle} from 'react-feather';
-import {dialogInputChangeAC, DialogsPageType, fakeDialogsAC, sendMessageAC} from '../../redux/dialogs-reducer';
+import {DialogsPageType, fakeDialogsAC, sendMessageAC} from '../../redux/dialogs-reducer';
 import {MessageSent} from "./MessageSent";
 import {AppStateType} from "../../redux/store/redux-store";
 import {useDispatch, useSelector} from "react-redux";
 
 
-const Dialogs: React.FC = () => {
-
+const Dialogs: React.FC = React.memo(() => {
     let dialogState = useSelector<AppStateType, DialogsPageType>(state => state.dialogsPage)
     let dialogItems = dialogState.dialogs
     let dialogMessages = dialogState.messages
-    let error = dialogState.error
-    let newMessageText = dialogState.newMessageText
     const dispatch = useDispatch()
-    const onDialogItemClick = () => {
+    const onDialogItemClick =() => {
         dispatch(fakeDialogsAC())
     }
-    const onInputChange = (text: string) => {
-        dispatch(dialogInputChangeAC(text))
-    }
-    const onSentButtonClick = () => {
-        dispatch(sendMessageAC())
+    const onSentButtonClick =(message: string) => {
+        dispatch(sendMessageAC(message))
     }
 
     //converting state to component
@@ -42,13 +36,11 @@ const Dialogs: React.FC = () => {
             <div className={s.dialogs__messages}>
 
                 {messageElements}
-                <div className={s.dialogs__typing}><MessageSent newMessageText={newMessageText}
-                                                                error={error} onInputChange={onInputChange}
-                                                                onSentButtonClick={onSentButtonClick}/></div>
+                <div className={s.dialogs__typing}><MessageSent onSentButtonClick={onSentButtonClick}/></div>
             </div>
         </div>
     )
-}
+})
 
 export default Dialogs
 

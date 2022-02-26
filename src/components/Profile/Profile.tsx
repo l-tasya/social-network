@@ -6,7 +6,7 @@ import MyPosts from "./MyPosts/MyPosts";
 //types
 type ProfilePropsType = {}
 
-const Profile: React.FC<ProfilePropsType> = () => {
+const Profile: React.FC<ProfilePropsType> = React.memo(() => {
     return (
         <div className={s.content}>
             <UserInfo/>
@@ -14,5 +14,5 @@ const Profile: React.FC<ProfilePropsType> = () => {
             <MyPosts/>
         </div>
     );
-}
+})
 export default Profile;

@@ -32,8 +32,7 @@ export type ProfileUserType = {
 
 export type ProfilePageType = {
     post: PostsType
-    newPostText: string
-    profile: ProfileUserType | null
+    profile: ProfileUserType
 }
 
 let initialState: ProfilePageType = {
@@ -41,7 +40,6 @@ let initialState: ProfilePageType = {
         {id: 1, src: secondSrc, message: 'That is my wall?'},
 
     ],
-    newPostText: '',
     profile: {
         fullName: 'Temirtas Nursain',
         contacts: {
@@ -56,37 +54,16 @@ let initialState: ProfilePageType = {
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
-    // if (action.type === 'ADD-POST') {
-    //     let newPost: PostType = {
-    //         id: state.post[state.post.length - 1].id + 1,
-    //         src: action.src === 1 ? firstSrc : secondSrc,
-    //         message: state.newPostText,
-    //     }
-    //     state.post.push(newPost)
-    //     state.newPostText = ''
-    // }
-    // if (action.type === 'PROFILE-INPUT-CHANGE') {
-    //     state.newPostText = `${action.text}`
-    // }
-    // if
-    // return {...state}
     switch (action.type) {
         case "ADD-POST":{
             let newPost: PostType = {
                 id: state.post[state.post.length - 1].id + 1,
-                src: action.src === 1 ? firstSrc : secondSrc,
-                message: state.newPostText,
+                src: state.profile.photos.small,
+                message: action.message,
             }
             return {
                 ...state,
                 post: [...state.post, newPost],
-                newPostText: '',
-            }
-        }
-        case "PROFILE-INPUT-CHANGE":{
-            return {
-                ...state,
-                newPostText: `${action.text}`
             }
         }
         case 'SET-USER-PROFILE':
@@ -100,17 +77,12 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             }
         }
     }
-}/*----AC----*/
-export const addPostAC = (src: 1 | 2) => {
+}
+/*----AC----*/
+export const addPostAC = (message: string) => {
     return {
         type: 'ADD-POST',
-        src: src
-    } as const
-}
-export const profileInputChangeAC = (text: string) => {
-    return {
-        type: 'PROFILE-INPUT-CHANGE',
-        text: text,
+        message
     } as const
 }
 export const setUserProfileAC = (user: ProfileUserType) => {
